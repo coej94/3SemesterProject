@@ -20,13 +20,16 @@ public class UrlGetter {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         List<String> list = new ArrayList();
-        list.add("http://localhost:8084/webto/api/price/Denmark");
-        list.add("http://localhost:8084/webto/api/price/Belgium");
-        list.add("http://localhost:8084/webto/api/price/Norway");
-        list.add("http://localhost:8084/webto/api/price/Sweden");
-        list.add("http://localhost:8084/webto/api/price/Netherlands");
-        list.add("http://localhost:8084/webto/api/price/Germany");
-        list.add("http://localhost:8084/webto/api/price/Aruba");
+//        list.add("http://localhost:8084/webto/api/price/Denmark");
+//        list.add("http://localhost:8084/webto/api/price/Belgium");
+//        list.add("http://localhost:8084/webto/api/price/Norway");
+//        list.add("http://localhost:8084/webto/api/price/Sweden");
+//        list.add("http://localhost:8084/webto/api/price/Netherlands");
+//        list.add("http://localhost:8084/webto/api/price/Germany");
+//        list.add("http://localhost:8084/webto/api/price/Aruba");
+list.add("https://jsonplaceholder.typicode.com/posts");
+  
+        
         new UrlGetter().starter(list);
     }
 
