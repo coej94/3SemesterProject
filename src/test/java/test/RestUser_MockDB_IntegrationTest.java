@@ -74,15 +74,15 @@ public class RestUser_MockDB_IntegrationTest {
         setupUsersInDB();
     }
 
-    @Test
-    public void testRestNoAuthenticationRequired() {
-        given()
-                .contentType("application/json")
-                .when()
-                .get("/api/demoall").then()
-                .statusCode(200)
-                .body("message", equalTo("result for all"));
-    }
+//    @Test
+//    public void testRestNoAuthenticationRequired() {
+//        given()
+//                .contentType("application/json")
+//                .when()
+//                .get("/api/demoall").then()
+//                .statusCode(200)
+//                .body("message", equalTo("result for all"));
+//    }
 
     @Test
     public void tesRestForAdmin() {
