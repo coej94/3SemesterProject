@@ -8,6 +8,7 @@ package facades;
 import entity.Flight;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 
 /**
@@ -16,16 +17,21 @@ import javax.persistence.EntityManagerFactory;
  */
 public class FlightFacade {
     
-    EntityManagerFactory emf;
+    private EntityManagerFactory emf;
     
-    public FlightFacade(EntityManagerFactory emf) {
-        this.emf = emf;
+    
+    
+    public FlightFacade(String persistenceUnit) {
+        this.emf = Persistence.createEntityManagerFactory(persistenceUnit);
     }
     
     public static void main(String[] args) {
-        
+       new FlightFacade("pu_development").starter();
     }
-    
+    //String flightID, String date, String origin, String destination, String flightNumber, int numberOfSeats, int traveltime, float totalPrice
+    public void starter(){
+        addFlight(new Flight("id","date","zam","cph","1",1,1,1));
+    }
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
