@@ -1,6 +1,8 @@
 package test;
 
+import entity.Flight;
 import entity.PU;
+import facades.FlightFacade;
 import facades.UserFacade;
 import java.util.List;
 import javax.persistence.Persistence;
@@ -12,28 +14,28 @@ import security.IUserFacade;
 
 public class UserFacadeTest {
   
-  IUserFacade facade ;
-  
-  //Override this in a derived class to use an alternative database
-  public void setPersistenceUnit() {
-    PU.setPU_Name("pu_memorydb_mock");
-  }
-  
+//  FlightFacade facade ;
+//  
+//  //Override this in a derived class to use an alternative database
+//  public void setPersistenceUnit() {
+//    PU.setPU_Name("pu_memorydb_mock");
+//  }
+//  
 //  @Before
-//  public void initFacadeAndTestUsers(){
+//  public void initFacade(){
 //    setPersistenceUnit(); 
-//    facade = new UserFacade(Persistence.createEntityManagerFactory(PU.getPersistenceUnitName()));
-//    //Setup test users
-//    utils.makeTestUsers.main(null);
+//    facade = new FlightFacade("pu_development");
+////    //Setup test users
+////    utils.makeTestUsers.main(null);
 //  }
 //  
 //  @Test
-//  public void testGetExsistingUserById() {
-//    IUser user = facade.getUserByUserId("user");
-//    System.out.println(user.getPassword());
+//  public void testGetExsistingFlightById() {
+//    Flight flight = facade.getFlightByID("");
+//    System.out.println(flight.getPassword());
 //    assertEquals("user", user.getUserName());
 //  }
-  
+//  
 //  @Test
 //  public void testGetNonExsistingUserById() {
 //    IUser user = facade.getUserByUserId("i_dont_exist");
@@ -45,7 +47,7 @@ public class UserFacadeTest {
 //    List<String> result = facade.authenticateUser("user", "test");
 //    assertEquals("User should have one role",1, result.size());
 //  }
-  
+//  
 //  @Test
 //  public void testAuthenticateUserWrongPassword() {
 //    List<String> result = facade.authenticateUser("user", "wrong password");
@@ -57,7 +59,7 @@ public class UserFacadeTest {
 //    List<String> result = facade.authenticateUser("iDontExist", "password");
 //    assertNull("Should be null, if user does not exists",result);
 //  }
-  
+//  
 //  @Test
 //  public void passwordIsHashedForNewUsers() {
 //    IUser user = facade.addUser("Kurt", "Secret");
@@ -72,5 +74,5 @@ public class UserFacadeTest {
 //    IUser newUser = facade.getUserByUserId("Kurt");
 //    assertEquals("Kurt", newUser.getUserName());
 //  }
-  
+//  
 }
