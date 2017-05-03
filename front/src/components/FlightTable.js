@@ -6,25 +6,24 @@ import {observer} from "mobx-react";
 class FlightTable extends Component {
 
     render() {
-        var rows = FlightFactory.flights.map(function (flight) {
+        var search = FlightFactory.flights.map(function (flight, index) {
             return (
-                <tr>
-                    <td>{flight?flight.airline:""}</td>
-                </tr>
+                <div key={flight.flights[index].flightID}>
+                    <h3>{flight.airline}</h3>
+                    <p>FlightID: {flight.flights[0].flightID}</p>
+                    <p>Date: {flight.flights[0].date}</p>
+                    <p>Origin: {flight.flights[0].origin}</p>
+                    <p>Destination: {flight.flights[0].destination}</p>
+                    <p>NumberofSeats: {flight.flights[0].numberOfSeats}</p>
+                    <p>Traveltime: {flight.flights[0].traveltime}</p>
+                    <p>TotalPrice: {flight.flights[0].totalPrice}</p>
+                </div>
             )
         });
         return (
-            <table className="table">
-                <thead>
-                <tr>
-                    <th>Airline</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                {rows}
-                </tbody>
-            </table>
+            <div>
+                {search}
+            </div>
         );
     }
 }
