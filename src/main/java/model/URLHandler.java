@@ -23,12 +23,12 @@ public class URLHandler implements Callable<String> {
         this.REQUESTMETHOD = requestMethod;
     }
 
-   @Override
+    @Override
     public String call() throws Exception {
         return getJson();
     }
-    
-    public String getJson(){
+
+    public String getJson() throws IOException {
         try {
             CONNECTION = (HttpURLConnection) new URL(URL).openConnection();
             CONNECTION.setRequestMethod(REQUESTMETHOD);
@@ -37,13 +37,17 @@ public class URLHandler implements Callable<String> {
                 throw new RuntimeException("Failed : HTTP error code : " + CONNECTION.getResponseCode());
             }
             BufferedReader br = new BufferedReader(new InputStreamReader((CONNECTION.getInputStream())));
-            String output = br.readLine();
+            String output;
+            String result = "";
+            while ((output = br.readLine()) != null) {
+                result += output;
+            }
             CONNECTION.disconnect();
-            return output;
+            return result;
         } catch (IOException ex) {
             ex.printStackTrace();
-        } return null;
+        }
+        return null;
     }
 
-    
 }
