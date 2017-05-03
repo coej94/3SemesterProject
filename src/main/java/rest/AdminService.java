@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 @Path("demoadmin")
 @RolesAllowed("Admin")
-public class Admin {
+public class AdminService {
   
   @GET
   @Produces(MediaType.APPLICATION_JSON)

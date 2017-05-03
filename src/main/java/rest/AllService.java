@@ -24,7 +24,7 @@ import model.UrlGetter;
  * @author plaul1
  */
 @Path("demoall")
-public class All {
+public class AllService {
 
     Gson gson = new Gson();
     
@@ -34,7 +34,7 @@ public class All {
   /**
    * Creates a new instance of A
    */
-  public All() {
+  public AllService() {
   }
 
   /**
