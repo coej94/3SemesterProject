@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import { hashHistory, Router, Route, IndexRoute } from 'react-router'
-import App from './pages/App';
+import App from './App';
 import Home from './pages/Home';
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
