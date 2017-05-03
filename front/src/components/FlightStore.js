@@ -1,12 +1,13 @@
 //Add imports here
 import {observable, computed, action, useStrict} from  "mobx";
 
-class FlightFactory {
+class FlightStore {
     @observable _flights = [];
     constructor() {
         //this.persons = [];
-        setInterval(this.getDate,10000);
-        //this.getDate();
+
+        // setInterval(this.getDate,100000);
+        this.getDate();
     }
 
     @computed get flights() {
@@ -21,9 +22,10 @@ class FlightFactory {
             return response.json();
         }).then(function (data) {
             //me._persons = data; This is how we did it on a normal array
+            console.log(data);
             me._flights.replace(data); //replace is a mobx method, this is how we MUST do it on a mobx array
         });
     }
 }
 
-export default new FlightFactory();
+export default new FlightStore;

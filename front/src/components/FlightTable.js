@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import FlightFactory from "./FlightFactory";
+import FlightFactory from "./FlightStore";
 import {observer} from "mobx-react";
 
 @observer
@@ -9,7 +9,7 @@ class FlightTable extends Component {
         var rows = FlightFactory.flights.map(function (flight) {
             return (
                 <tr>
-                    <td>{flight.airline}</td>
+                    <td>{flight?flight.airline:""}</td>
                 </tr>
             )
         });
