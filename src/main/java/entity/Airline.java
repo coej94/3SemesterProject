@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,17 +23,50 @@ public class Airline implements Serializable {
     }
     
     @Id
-    String airline;
-    List<Flight> flights;
+    private String airline;
+    @OneToMany
+    private List<Flight> flights;
 
-    public Airline(int airlineID, String airline, List<Flight> flights) {
+    public Airline(String airline, List<Flight> flights) {
         this.airline = airline;
         this.flights = flights;
     }
     
     @Override
     public String toString(){
-        return airline+flights;
+        return getAirline()+getFlights();
+    }
+
+    /**
+     * @return the airline
+     */
+    public String getAirline() {
+        return airline;
+    }
+
+    /**
+     * @param airline the airline to set
+     */
+    public void setAirline(String airline) {
+        this.airline = airline;
+    }
+    
+    public void addFlight(Flight f){
+        flights.add(f);
+    }
+
+    /**
+     * @return the flights
+     */
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    /**
+     * @param flights the flights to set
+     */
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
     
 }

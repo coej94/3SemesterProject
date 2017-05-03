@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity
 public class Flight implements Serializable {
 
-     @Id
+    @Id
     String flightID;
     String date, origin, destination, flightNumber;
     int numberOfSeats, traveltime;
@@ -35,7 +35,7 @@ public class Flight implements Serializable {
         this.traveltime = traveltime;
         this.totalPrice = totalPrice;
     }
-
+    
     public String getFlightID() {
         return flightID;
     }
@@ -99,6 +99,7 @@ public class Flight implements Serializable {
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
     }
+
 
    
 }
