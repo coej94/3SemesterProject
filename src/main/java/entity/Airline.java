@@ -23,8 +23,7 @@ public class Airline implements Serializable {
         this.flights = flights;
     }
 
-    
-    public void addFlight(Flight f){
+    public void addFlight(Flight f) {
         flights.add(f);
     }
 
@@ -40,5 +39,9 @@ public class Airline implements Serializable {
      */
     public void setFlights(List<Flight> flights) {
         this.flights = flights;
+    }
+
+    public Flight getLatestFlight() {
+        return flights.get(flights.size() - 1);
     }
 }

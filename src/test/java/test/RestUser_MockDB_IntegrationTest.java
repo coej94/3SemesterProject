@@ -33,7 +33,7 @@ public class RestUser_MockDB_IntegrationTest {
         } else {
             PU.setPU_Name("pu_memorydb_mock");
         }
-        utils.makeTestUsers.main(null);
+        utils.makeTestFlights.main(null);
     }
 
     //Utility method to login and set the securityToken
