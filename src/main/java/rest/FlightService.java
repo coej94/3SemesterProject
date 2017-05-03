@@ -36,17 +36,15 @@ public class FlightService {
         public String getFlightByFlightID(@PathParam("flightID") String flightID) {
             Flight f = FACADE.getFlightByID(flightID);
             return GSON.toJson(f);
-
         }
 
         @POST
         @Produces(MediaType.APPLICATION_JSON)
         @Path("addFlight")
         public String addFlight(String flight) {
+            System.out.println(GSON.fromJson(flight, Flight.class));
             Flight f = GSON.fromJson(flight, Flight.class);
-            FACADE.addFlight(flight, flight, flight, flight, flight, 0, 0, 0);
-
-            return GSON.toJson(f);
+            return GSON.toJson(FACADE.addFlight(f));
         }
 
     }

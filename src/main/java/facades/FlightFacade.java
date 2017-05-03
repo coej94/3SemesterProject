@@ -22,18 +22,21 @@ public class FlightFacade {
         this.emf = emf;
     }
     
+    public static void main(String[] args) {
+        
+    }
+    
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
     
-    public Flight addFlight(String flightID, String date, String origin, String destination, String flightNumber, int numberOfSeats, int traveltime, float totalPrice){
+    public Flight addFlight(Flight flight){
         EntityManager em = getEntityManager();
         try {
-            Flight flight = new Flight(flightID, date, origin, destination, flightNumber, numberOfSeats, traveltime, totalPrice);
             em.getTransaction().begin();
             em.persist(flight);
             em.getTransaction().commit();
-            return flight;
+            return getFlightByID(flight.getFlightID());
         }finally {
             em.close();
         }
