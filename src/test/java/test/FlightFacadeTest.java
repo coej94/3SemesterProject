@@ -1,6 +1,5 @@
 package test;
 
-import entity.Flight;
 import entity.PU;
 import facades.FlightFacade;
 import org.junit.Test;

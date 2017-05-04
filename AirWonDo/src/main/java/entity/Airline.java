@@ -1,17 +1,11 @@
 package entity;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-@Entity
-public class Airline implements Serializable {
 
-    @Id
+public class Airline {
+
     private final String name;
-    @OneToMany
     private List<Flight> flights;
 
     public Airline(String name, List<Flight> flights) {

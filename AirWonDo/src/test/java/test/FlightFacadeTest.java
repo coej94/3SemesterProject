@@ -1,24 +1,16 @@
 package test;
 
 import entity.Flight;
-import entity.PU;
-import facades.FlightFacade;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
 public class FlightFacadeTest {
 
-    FlightFacade facade;
 
     public FlightFacadeTest() {
-        facade = new FlightFacade(PU.getPersistenceUnitName());
     }
 
-    //Override this in a derived class to use an alternative database
-    public static void setPersistenceUnit() {
-        PU.setPU_Name("pu_memorydb_mock");
-    }
 
 //    @BeforeClass
 //    public static void initFacade() {

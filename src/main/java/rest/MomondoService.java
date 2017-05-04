@@ -16,7 +16,7 @@ import model.UrlGetter;
  * @author plaul1
  */
 @Path("flights")
-public class AllService {
+public class MomondoService {
 
     Gson gson = new Gson();
 
@@ -26,7 +26,7 @@ public class AllService {
     /**
      * Creates a new instance of A
      */
-    public AllService() {
+    public MomondoService() {
     }
 
     /**

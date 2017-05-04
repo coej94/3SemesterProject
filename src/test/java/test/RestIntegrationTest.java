@@ -1,7 +1,6 @@
 package test;
 
 import com.google.gson.Gson;
-import entity.Flight;
 import facades.FlightFacade;
 import org.junit.BeforeClass;
 import io.restassured.RestAssured;

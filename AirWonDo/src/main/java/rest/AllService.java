@@ -8,7 +8,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import model.UrlGetter;
 
 /**
  * REST Web Service
@@ -41,7 +40,7 @@ public class AllService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{dest}/{date}/{passengers}/")
     public String getToDest(@PathParam("dest") String dest, @PathParam("date") String date, @PathParam("passengers") String passengers) {
-        return gson.toJson(new UrlGetter(dest, date, passengers).getData());
+        return "";//gson.toJson(new UrlGetter(dest, date, passengers).getData());
     }
 
     /**
@@ -56,7 +55,7 @@ public class AllService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{dest}/{to}/{date}/{passengers}/")
     public String getToFromDest(@PathParam("dest") String dest, @PathParam("to") String to, @PathParam("date") String date, @PathParam("passengers") String passengers) {
-        return gson.toJson(new UrlGetter(dest, to, date, passengers).getData());
+        return "";//gson.toJson(new UrlGetter(dest, to, date, passengers).getData());
     }
 
 }
