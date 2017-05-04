@@ -1,10 +1,12 @@
 //Add imports here
 import {observable, computed, action} from  "mobx";
+import app from "../App"
 
 class FlightStore {
     @observable _flights = [];
     constructor() {
         this.getDate();
+        console.log(app.getDate())
     }
 
     @computed get flights() {

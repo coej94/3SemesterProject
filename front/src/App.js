@@ -1,23 +1,29 @@
 import React, {Component} from 'react'
-import Flight from './components/FlightTable'
+import FlightTable from './components/FlightTable'
 class App extends Component {
 
 
-state={
-    date:"asger"
-}
+    state = {
+        date: "hej"
+    }
 
-printDate(){
-    console.log(this.state.date);
-}
 
-    render() {
+    handleChange(e) {
+        this.setState({
+            date: e.target.value
+        }, () => console.log(this.state.date))
+    }
+
+    getDate() {
+        return this.state.date;
+    }
+
+render() {
         return (
             <div>
-                {this.state.date}
-                <input type="date" onChange={console.log("asger")}/>
-                <input type="button" value="search" onClick={this.printDate}/>
-            <Flight/>
+
+                <input type="date" onChange={this.handleChange.bind(this)}/>
+                <FlightTable data={this.state.date}/>
             </div>
         )
     }
