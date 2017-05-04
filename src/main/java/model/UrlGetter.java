@@ -18,15 +18,19 @@ public class UrlGetter {
     static ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
     Gson gson = new Gson();
 
-    public List<Airline> getData(String requestMethod, String dest, String date, String passengers
-    ) {
-        List<String> list = new ArrayList();
-
+    List<String> list = new ArrayList();
+    
+    public UrlGetter(String dest, String to, String date, String passengers) {
+        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/"+dest+"/"+to+"/"+date+"/"+passengers);
+        list.add("https://airline.skaarup.io/api/flights/"+dest+"/"+to+"/"+date+"/"+passengers); // Andre flyselskaber
+   
+    }
+    public UrlGetter(String dest, String date, String passengers) {
         list.add("http://airline-plaul.rhcloud.com/api/flightinfo/"+dest+"/"+date+"/"+passengers);
         list.add("https://airline.skaarup.io/api/flights/"+dest+"/"+date+"/"+passengers); // Andre flyselskaber
-//        list.add("https://airline.skaarup.io/api/flights/DEN/2017-05-01/2");
-//        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-08T00:00:00.000Z/1");
-//        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-09T00:00:00.000Z/1");
+    }     
+    
+    public List<Airline> getData() {
         List<String> newList = list.stream()
                 .map(url -> executor.submit(new URLHandler(url, "GET")))
                 .map(future -> {
