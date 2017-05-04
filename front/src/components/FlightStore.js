@@ -12,7 +12,7 @@ class FlightStore {
     }
 
     @action
-    getDate = () => {
+    getDate = (dest,date,passengers) => {
         //Observer how we store a reference to the outer this
         var me = this;
         fetch("http://localhost:8084/seedMaven/api/demoall/CPH/2017-05-06T00:00:00.000Z/1").then(function (response) {

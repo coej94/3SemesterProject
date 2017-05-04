@@ -23,8 +23,8 @@ public class UrlGetter {
         List<String> list = new ArrayList();
 
         list.add("http://airline-plaul.rhcloud.com/api/flightinfo/"+dest+"/"+date+"/"+passengers);
-        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-06T00:00:00.000Z/1"); // Andre flyselskaber
-//        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-07T00:00:00.000Z/1");
+//        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-06T00:00:00.000Z/1"); // Andre flyselskaber
+//        list.add("https://airline.skaarup.io/api/flights/DEN/2017-05-01/2");
 //        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-08T00:00:00.000Z/1");
 //        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/CPH/2017-05-09T00:00:00.000Z/1");
         List<String> newList = list.stream()
