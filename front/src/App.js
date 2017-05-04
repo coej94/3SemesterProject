@@ -1,23 +1,28 @@
-import React, {Component} from 'react'
-import Flight from './components/FlightTable'
+import React, {Component} from 'react';
+import Flight from './components/FlightTable';
+import {observable, computed, action} from  "mobx";
 class App extends Component {
 
+    @observable date = "";
 
-state={
-    date:"asger"
-}
+    @computed get date(){
+        return this.date;
+    }
+    getDate(){
+        //console.log(this.date);
+    }
 
-printDate(){
-    console.log(this.state.date);
-}
+    handleChange(e){
+        const data = e.target.value;
+        console.log(data);
+    }
 
     render() {
         return (
             <div>
-                {this.state.date}
-                <input type="date" onChange={console.log("asger")}/>
-                <input type="button" value="search" onClick={this.printDate}/>
-            <Flight/>
+                <input type="date" onChange={this.handleChange}/>
+                <input type="button" value="search"/>
+                <Flight/>
             </div>
         )
     }
