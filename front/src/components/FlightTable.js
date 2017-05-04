@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import FlightFactory from "./FlightStore";
+import FlightStore from "./FlightStore";
 import {observer} from "mobx-react";
 
 @observer
@@ -7,7 +7,7 @@ class FlightTable extends Component {
 
 
     render() {
-        var search = FlightFactory.flights.map(function (flight, index) {
+        var search = FlightStore.flights.map(function (flight, index) {
             return (
                 <div>
 
