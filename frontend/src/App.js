@@ -11,7 +11,7 @@ class App extends Component {
     }
 
     searchData(dest,passengers) {
-        fetch('http://localhost:8084/seedMaven/api/demoall/'+dest+'/'+this.state.date+'T00:00:00.000Z/'+passengers)
+        fetch('http://localhost:8084/seedMaven/api/flights/'+dest+'/'+this.state.date+'T00:00:00.000Z/'+passengers)
             .then(res => res.json())
             .then(flight => {
                 this.setState({flight}, () => console.log())

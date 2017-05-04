@@ -27,7 +27,7 @@ public class FlightService {
     private static final FlightFacade FACADE = new FlightFacade("pu_development");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    @Path("Flight")
+    @Path("flight")
     public class flight {
 
         @GET

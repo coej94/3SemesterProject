@@ -23,7 +23,7 @@ import model.UrlGetter;
  *
  * @author plaul1
  */
-@Path("demoall")
+@Path("flights")
 public class AllService {
 
     Gson gson = new Gson();
