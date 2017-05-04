@@ -47,8 +47,23 @@ public class AllService {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   @Path("/{dest}/{date}/{passengers}/")
-  public String getText(@PathParam("dest") String dest,@PathParam("date") String date,@PathParam("passengers") String passengers ) {
-    return gson.toJson(new UrlGetter().getData("GET",dest,date,passengers));
+  public String getToDest(@PathParam("dest") String dest,@PathParam("date") String date,@PathParam("passengers") String passengers ) {
+    return gson.toJson(new UrlGetter(dest, date, passengers).getData());
+  }
+  
+    /**
+     *
+     * @param dest
+     * @param to
+     * @param date
+     * @param passengers
+     * @return
+     */
+    @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Path("/{dest}/{to}/{date}/{passengers}/")
+  public String getToFromDest(@PathParam("dest") String dest,@PathParam("to") String to,@PathParam("date") String date,@PathParam("passengers") String passengers ) {
+    return gson.toJson(new UrlGetter(dest, to, date, passengers).getData());
   }
 
 }
