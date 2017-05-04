@@ -17,7 +17,6 @@ public class makeTestFlights {
 
         FlightFacade flightFacade = new FlightFacade(PU.getPersistenceUnitName());
 
-        
         Flight flight = new Flight("2222-534231221325", "2017-09-23", "CPH", "ISB", "DK323", 2, 230, (float) 230.4);
         flightFacade.createAirline("AirWonDo");
         flightFacade.addFlight(flight);

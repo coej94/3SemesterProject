@@ -19,17 +19,18 @@ public class UrlGetter {
     Gson gson = new Gson();
 
     List<String> list = new ArrayList();
-    
+
     public UrlGetter(String dest, String to, String date, String passengers) {
-        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/"+dest+"/"+to+"/"+date+"/"+passengers);
-        list.add("https://airline.skaarup.io/api/flights/"+dest+"/"+to+"/"+date+"/"+passengers); // Andre flyselskaber
-   
+        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/" + dest + "/" + to + "/" + date + "/" + passengers);
+        list.add("https://airline.skaarup.io/api/flights/" + dest + "/" + to + "/" + date + "/" + passengers); // Andre flyselskaber
+
     }
+
     public UrlGetter(String dest, String date, String passengers) {
-        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/"+dest+"/"+date+"/"+passengers);
-        list.add("https://airline.skaarup.io/api/flights/"+dest+"/"+date+"/"+passengers); // Andre flyselskaber
-    }     
-    
+        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/" + dest + "/" + date + "/" + passengers);
+        list.add("https://airline.skaarup.io/api/flights/" + dest + "/" + date + "/" + passengers); // Andre flyselskaber
+    }
+
     public List<Airline> getData() {
         List<String> newList = list.stream()
                 .map(url -> executor.submit(new URLHandler(url, "GET")))

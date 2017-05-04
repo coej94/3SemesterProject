@@ -39,21 +39,20 @@ public class RestUser_MockDB_IntegrationTest {
     //Utility method to login and set the securityToken
 //    private static void login(String role, String password) {
 //        String json = String.format("{username: \"%s\", password: \"%s\"}", role, password);
-        //System.out.println(json);
+    //System.out.println(json);
 //        securityToken = given()
 //                .contentType("application/json")
 //                .body(json)
 //                .when().post("/api/login")
 //                .then()
 //                .extract().path("token");
-        //System.out.println("Token: " + securityToken);
+    //System.out.println("Token: " + securityToken);
 //
 //    }
 //
 //    private void logOut() {
 //        securityToken = null;
 //    }
-
     @BeforeClass
     public static void setUpBeforeAll() throws ServletException, MalformedURLException, LifecycleException {
         tomcat = new EmbeddedTomcat();
@@ -83,7 +82,6 @@ public class RestUser_MockDB_IntegrationTest {
 //                .statusCode(200)
 //                .body("message", equalTo("result for all"));
 //    }
-
 //    @Test
 //    public void tesRestForAdmin() {
 //        login("admin", "test");
@@ -96,7 +94,6 @@ public class RestUser_MockDB_IntegrationTest {
 //                .body("message", equalTo("Hello Admin from server (call accesible by only authenticated ADMINS)"))
 //                .body("serverTime", notNullValue());
 //    }
-
 //    @Test
 //    public void testRestForUser() {
 //        login("user", "test");
@@ -108,7 +105,6 @@ public class RestUser_MockDB_IntegrationTest {
 //                .statusCode(200)
 //                .body("message", equalTo("Hello User from Server (Accesible by only authenticated USERS)"));
 //    }
-
 //    @Test
 //    public void userNotAuthenticated() {
 //        logOut();
@@ -131,5 +127,4 @@ public class RestUser_MockDB_IntegrationTest {
 //                .body("error.message", equalTo("No authorization header provided"));
 //
 //    }
-
 }

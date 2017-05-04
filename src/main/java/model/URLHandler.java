@@ -7,10 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.Callable;
 
-/**
- *
- * @author joaci
- */
 public class URLHandler implements Callable<String> {
 
     private final String URL;

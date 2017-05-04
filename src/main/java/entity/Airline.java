@@ -9,17 +9,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Airline implements Serializable {
 
-    public Airline() {
-
-    }
-
     @Id
-    private String airline;
+    private final String name;
     @OneToMany
     private List<Flight> flights;
 
-    public Airline(String airline, List<Flight> flights) {
-        this.airline = airline;
+    public Airline(String name, List<Flight> flights) {
+        this.name = name;
         this.flights = flights;
     }
 
@@ -34,6 +30,10 @@ public class Airline implements Serializable {
         return flights;
     }
 
+    public Flight getLatestFlight() {
+        return flights.get(flights.size() - 1);
+    }
+
     /**
      * @param flights the flights to set
      */
@@ -41,7 +41,4 @@ public class Airline implements Serializable {
         this.flights = flights;
     }
 
-    public Flight getLatestFlight() {
-        return flights.get(flights.size() - 1);
-    }
 }
