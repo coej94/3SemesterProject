@@ -27,7 +27,7 @@ public class Flight implements Serializable {
         this.traveltime = traveltime;
         this.totalPrice = totalPrice;
     }
-    
+
     public String getFlightID() {
         return flightID;
     }
