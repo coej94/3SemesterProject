@@ -40,11 +40,11 @@ class App extends Component {
                         <h3>{flight.airline}</h3>
                         <p>FlightID: {flight.flights[0].flightID}</p>
                         <p>Date: {flight.flights[0].date}</p>
-                        <p>Origin: {flight.flights[0].origin}</p>
+                        <p>From: {flight.flights[0].origin}</p>
                         <p>Destination: {flight.flights[0].destination}</p>
                         <p>NumberofSeats: {flight.flights[0].numberOfSeats}</p>
-                        <p>Traveltime: {flight.flights[0].traveltime}</p>
-                        <p>TotalPrice: {flight.flights[0].totalPrice}</p>
+                        <p>Traveltime: {flight.flights[0].traveltime} minutter</p>
+                        <p>TotalPrice: {flight.flights[0].totalPrice} kr.</p>
                     </div>
                 )
             });
