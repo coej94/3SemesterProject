@@ -29,9 +29,9 @@ public class FlightFacade {
         return emf.createEntityManager();
     }
 
-    public Airline createAirline(String airline) {
+    public Airline createAirline(String airlineName) {
         EntityManager em = getEntityManager();
-        Airline a = new Airline(airline, new ArrayList());
+        Airline a = new Airline(airlineName, new ArrayList());
         try {
             em.getTransaction().begin();
             em.persist(a);

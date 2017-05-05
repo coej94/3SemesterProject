@@ -1,15 +1,15 @@
 package entity;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Airline implements Serializable {
 
-    private final String airline;
+public class Airline {
+
+    private final String name;
     private List<Flight> flights;
 
-    public Airline(String airline, List<Flight> flights) {
-        this.airline = airline;
+    public Airline(String name, List<Flight> flights) {
+        this.name = name;
         this.flights = flights;
     }
 

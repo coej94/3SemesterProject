@@ -2,28 +2,26 @@ import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            flight: [],
+        state = {
+            flyOptions: ["CPH", "SXF", "BCN", "CDG", "STN"],
+            flights: [],
             date: "",
             from: "CPH",
             to: "CPH",
-            seats: ""
+            seats: "1",
+            airline:[]
         }
-    }
 
     searchData() {
-        console.log(this.state)
         fetch('http://localhost:8084/seedMaven/api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
             .then(res => res.json())
             .then(flight => {
-                this.setState({flight}, () => console.log())
+                var flights = flight.map((airline)=>{return airline.flights})
+                this.setState({
+                    flights:flights,
+                    airline:flight
+                }, () => console.log())
             })
-    }
-
-    search() {
-        this.searchData();
     }
 
     handleChange(e) {
@@ -32,46 +30,60 @@ class App extends Component {
         }, () => console.log())
     }
 
+    sortByPrice() {
+        let newFlight = this.state.flights.map((flight) => {
+            return flight.sort((a, b) => {
+                return a.totalPrice - b.totalPrice
+            })
+        });
+        this.setState({flights: newFlight}, () => console.log());
+    }
+
+    nyRenderTable() {
+            let table = this.state.flights.map((airline, index) => {
+                return airline.map((flight) => {
+                    return (
+                        <div key={flight.flightID}>
+                            <hr/>
+                            <h3>{this.state.airline[index].airline}</h3>
+                            <p>FlightID: {flight.flightID}</p>
+                            <p>Date: {flight.date}</p>
+                            <p>From: {flight.origin}</p>
+                            <p>Destination: {flight.destination}</p>
+                            <p>NumberofSeats: {flight.numberOfSeats}</p>
+                            <p>Traveltime: {flight.traveltime} minutter</p>
+                            <p>TotalPrice: {flight.totalPrice} kr.</p>
+                        </div>
+                    )
+                })
+            })
+            return table;
+    }
+
     render() {
-        if (this.state.flight[0] != null) {
-            var search = this.state.flight.map(function (flight) {
-                return (
-                    <div key={flight.flights[0].flightID}>
-                        <h3>{flight.airline}</h3>
-                        <p>FlightID: {flight.flights[0].flightID}</p>
-                        <p>Date: {flight.flights[0].date}</p>
-                        <p>Origin: {flight.flights[0].origin}</p>
-                        <p>Destination: {flight.flights[0].destination}</p>
-                        <p>NumberofSeats: {flight.flights[0].numberOfSeats}</p>
-                        <p>Traveltime: {flight.flights[0].traveltime}</p>
-                        <p>TotalPrice: {flight.flights[0].totalPrice}</p>
-                    </div>
-                )
-            });
-        }
-        let flyOptions = ["CPH", "SXF", "BCN", "CDG", "STN"];
-
-
         return (
             <div>
                 <p>Fly from:
                     <select name="from" onChange={this.handleChange.bind(this)}>
-                        {flyOptions.map((fly,index) => <option key={index} value={fly}>{fly}</option>)}
+                        {this.state.flyOptions.map((fly, index) => <option key={index} value={fly}>{fly}</option>)}
                     </select></p>
-
                 <p>Departure Date:
                     <input type="date" name="date" onChange={this.handleChange.bind(this)}/></p>
-
                 <p>Fly to:
                     <select name="to" onChange={this.handleChange.bind(this)}>
-                        {flyOptions.map((fly,index) => <option key={index} value={fly}>{fly}</option>)}
+                        {this.state.flyOptions.map((fly, index) => <option key={index} value={fly}>{fly}</option>)}
                     </select></p>
-
                 <p>Seats:
                     <input type="number" name="seats" onChange={this.handleChange.bind(this)}/>
                 </p>
-                <input type="button" value="Search" onClick={this.search.bind(this)}/>
-                {search}
+                <p>pris:</p>
+                <input type="search" placeholder="fra"/>
+                <input type="search" placeholder="til"/>
+                <br/>
+                <input type="button" value="Search" onClick={this.searchData.bind(this)}/>
+                <input type="button" value="Sort by price" onClick={this.sortByPrice.bind(this)}/>
+                <p></p>
+                {this.nyRenderTable()}
             </div>
         );
     }
