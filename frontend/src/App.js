@@ -2,24 +2,29 @@ import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-        state = {
-            flyOptions: ["CPH", "SXF", "BCN", "CDG", "STN"],
-            flights: [],
-            date: "",
-            from: "CPH",
-            to: "CPH",
-            seats: "1",
-            airline:[]
-        }
+    state = {
+        flyOptions: ["CPH", "SXF", "BCN", "CDG", "STN"],
+        flights: [],
+        date: "",
+        from: "CPH",
+        to: "CPH",
+        seats: "1",
+        airline: []
+    }
 
     searchData() {
         fetch('http://localhost:8084/seedMaven/api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
             .then(res => res.json())
             .then(flight => {
-                var flights = flight.map((airline)=>{return airline.flights})
+
+                var flights = flight.map((airline) => {
+
+                     return airline!=null?airline.flights:null
+
+                })
                 this.setState({
-                    flights:flights,
-                    airline:flight
+                    flights: flights,
+                    airline: flight
                 }, () => console.log())
             })
     }
@@ -41,6 +46,7 @@ class App extends Component {
 
     nyRenderTable() {
             let table = this.state.flights.map((airline, index) => {
+                if(airline!=null){
                 return airline.map((flight) => {
                     return (
                         <div key={flight.flightID}>
@@ -55,9 +61,10 @@ class App extends Component {
                             <p>TotalPrice: {flight.totalPrice} kr.</p>
                         </div>
                     )
-                })
+                })} return null;
             })
             return table;
+
     }
 
     render() {
