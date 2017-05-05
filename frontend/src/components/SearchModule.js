@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './App.css';
 
-class App extends Component {
+class SearchModule extends Component {
     state = {
         flyOptions: ["CPH", "SXF", "BCN", "CDG", "STN"],
         flights: [],
@@ -18,9 +17,7 @@ class App extends Component {
             .then(flight => {
 
                 var flights = flight.map((airline) => {
-
-                     return airline!=null?airline.flights:null
-
+                    return airline!=null?airline.flights:null
                 })
                 this.setState({
                     flights: flights,
@@ -37,16 +34,18 @@ class App extends Component {
 
     sortByPrice() {
         let newFlight = this.state.flights.map((flight) => {
-            return flight.sort((a, b) => {
-                return a.totalPrice - b.totalPrice
-            })
+            if(flight!=null) {
+                return flight.sort((a, b) => {
+                    return a.totalPrice - b.totalPrice
+                })
+            } return null
         });
         this.setState({flights: newFlight}, () => console.log());
     }
 
     nyRenderTable() {
-            let table = this.state.flights.map((airline, index) => {
-                if(airline!=null){
+        let table = this.state.flights.map((airline, index) => {
+            if(airline!=null){
                 return airline.map((flight) => {
                     return (
                         <div key={flight.flightID}>
@@ -62,8 +61,8 @@ class App extends Component {
                         </div>
                     )
                 })} return null;
-            })
-            return table;
+        })
+        return table;
 
     }
 
@@ -96,4 +95,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default SearchModule;

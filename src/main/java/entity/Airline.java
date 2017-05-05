@@ -12,18 +12,18 @@ public class Airline implements Serializable {
     public Airline(){}
     
     @Id
-    private String name;
+    private String airline;
     @OneToMany
     private List<Flight> flights;
 
  
     public Airline(String airline, List<Flight> flights) {
-        this.name = airline;
+        this.airline = airline;
         this.flights = flights;
     }
 
     public String getAirline() {
-        return name;
+        return airline;
     }
     
     
