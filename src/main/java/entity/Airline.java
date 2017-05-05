@@ -2,16 +2,31 @@ package entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Airline implements Serializable {
-
-    private final String airline;
+    
+    public Airline(){}
+    
+    @Id
+    private String name;
+    @OneToMany
     private List<Flight> flights;
 
+ 
     public Airline(String airline, List<Flight> flights) {
-        this.airline = airline;
+        this.name = airline;
         this.flights = flights;
     }
+
+    public String getAirline() {
+        return name;
+    }
+    
+    
 
     public void addFlight(Flight f) {
         flights.add(f);

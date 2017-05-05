@@ -1,6 +1,5 @@
 package utils;
 
-import entity.Airline;
 import entity.Flight;
 import entity.PU;
 import facades.FlightFacade;
