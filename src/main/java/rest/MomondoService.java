@@ -58,5 +58,4 @@ public class MomondoService {
     public String getToFromDest(@PathParam("dest") String dest, @PathParam("to") String to, @PathParam("date") String date, @PathParam("passengers") String passengers) {
         return gson.toJson(new UrlGetter(dest, to, date, passengers).getData());
     }
-
 }

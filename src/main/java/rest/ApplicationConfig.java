@@ -28,6 +28,7 @@ public class ApplicationConfig extends Application {
         resources.add(rest.All.class);
         resources.add(rest.FlightService.flight.class);
         resources.add(rest.MomondoService.class);
+        resources.add(rest.ReservationService.class);
         resources.add(rest.User.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(security.Login.class);

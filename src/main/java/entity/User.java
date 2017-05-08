@@ -32,7 +32,6 @@ public class User implements IUser, Serializable{
     this.passwordHash = PasswordStorage.createHash(password);
   }
   
-  
   public void addRole(Role role){
     if(roles == null){
       roles = new ArrayList();
@@ -62,7 +61,6 @@ public class User implements IUser, Serializable{
     return passwordHash;
   }
   
-
   public void setPassword(String password) throws PasswordStorage.CannotPerformOperationException {
     this.passwordHash = this.passwordHash = PasswordStorage.createHash(password);
   }
