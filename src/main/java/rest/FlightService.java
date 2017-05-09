@@ -35,7 +35,5 @@ public class FlightService {
             Flight f = GSON.fromJson(flight, Flight.class);
             return GSON.toJson(FACADE.addFlight(f));
         }
-
     }
-
 }
