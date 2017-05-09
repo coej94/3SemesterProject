@@ -11,6 +11,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import entity.Reservation;
 import facades.FlightFacade;
+
 /**
  * REST Web Service
  *
@@ -20,8 +21,7 @@ import facades.FlightFacade;
 public class ReservationService {
 
     Gson gson = new Gson();
-    FlightFacade ff = new FlightFacade("pu_development");
-    
+
     @Context
     private UriInfo context;
 
@@ -33,16 +33,24 @@ public class ReservationService {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{flightId}/")
+    @Path("/{flightId}/") 
     public String getToDest(@PathParam("flightId") String dest, String reservation) {
-        Reservation r = gson.fromJson(reservation, Reservation.class);
-        Flight f = ff.getFlightByID(r.getFlightId());
-        
-        String s = "";
-        for (int i = 0; i < r.getPassengers().size(); i++) {
-            s += "{\"firstName\": \""+r.getPassengers().get(i).getFirstName()+"\",\"lastName\": \""+r.getPassengers().get(i).getLastName()+"\"},";
+        try {
+            Reservation r = gson.fromJson(reservation, Reservation.class);
+            Flight f = new Flight(r.getFlightId(), "2017-05-10T03:26:00.000Z", "CPH", "SFX", "123-12310", 1, 101, 2);
+            System.out.println(f.toString());
+
+            String s = "";
+            for (int i = 0; i < r.getPassengers().size(); i++) {
+                s += "{\"firstName\": \"" + r.getPassengers().get(i).getFirstName() + "\",\"lastName\": \"" + r.getPassengers().get(i).getLastName() + "\"},";
+            }
+            s = s.substring(0, s.length()-1);
+            String result = "{\"flightNumber\" : \"" + f.getFlightNumber() + "\",\"origin\": \"" + f.getOrigin() + "\",\"destination\": \"" + f.getDestination() + "\",\"date\": \"" + f.getDate() + "\",\"flightTime\": \"" + f.getTraveltime() + "\",\"numberOfSeats\": \"" + f.getNumberOfSeats() + "\",\"reserveName\": \"" + r.getReserveName() + "\",\"passengers\": [" + s + "]}";
+            System.out.println(result);
+            return result;
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
         }
-        //s = s.substring(0, s.length()-1);
-        return "{\"flightNumber\" : \""+f.getFlightNumber()+"\",\"origin\": \""+f.getOrigin()+"\",\"destination\": \""+f.getDestination()+"\",\"date\": \""+f.getDate()+"\",\"flightTime\": \""+f.getTraveltime()+"\",\"numberOfSeats\": \""+f.getNumberOfSeats()+"\",\"reserveName\": \""+r.getReserveName()+"\",\"passengers\": ["+s+"]}";
+        return "";
     }
 }

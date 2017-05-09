@@ -2,20 +2,13 @@ package model;
 
 import entity.Flight;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 public class RandomData {
 
-    private String flightID, date, origin, destination, flightNumber;
-    private int numberOfSeats, traveltime;
-    private float totalPrice;
     private Random random = new Random();
-
-    public RandomData() {
-    }
-
+    
     public Flight getFlight() {
         return new Flight(getFlightID(), getDate(), getOrigin(), getDestination(), getFlightNumber(), getNumberOfSeats(), getTraveltime(), getTotalPrice());
     }
