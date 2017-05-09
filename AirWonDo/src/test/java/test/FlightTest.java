@@ -18,7 +18,7 @@ public class FlightTest {
     @Test
     public void testGetRandomFlightID() {
         String id = crd.getFlightID();
-
+        
         assertEquals(18, id.length());
         assertEquals("-", id.substring(4, 5));
         assertEquals(id.getClass(), String.class);
@@ -27,7 +27,7 @@ public class FlightTest {
     @Test
     public void testGetDate() {
         String date = crd.getDate();
-
+        
         assertEquals(24, date.length());
         assertEquals("-", date.substring(4, 5));
         assertEquals("-", date.substring(7, 8));
