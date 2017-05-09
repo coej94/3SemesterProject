@@ -6,14 +6,13 @@ import entity.Flight;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import model.RandomData;
 
-@Path("flight")
+@Path("flights")
 public class FlightService {
 
     private static final RandomData DATA = new RandomData();
@@ -32,7 +31,6 @@ public class FlightService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/flight")
     public String getRandomFlight() {
         Flight randomFlight = DATA.getFlight();
         flights.add(randomFlight);
