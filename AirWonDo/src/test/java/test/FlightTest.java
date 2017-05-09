@@ -1,6 +1,6 @@
 package test;
 
-import model.CreateRandomData;
+import model.RandomData;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
@@ -8,17 +8,17 @@ import org.junit.Test;
 
 public class FlightTest {
 
-    static CreateRandomData crd;
+    static RandomData rd;
 
     @BeforeClass
     public static void initFacade() {
-        crd = new CreateRandomData();
+        rd = new RandomData();
     }
 
     @Test
-    public void testGetRandomFlightID() {
-        String id = crd.getFlightID();
-        
+    public void testGetFlightID() {
+        String id = rd.getFlightID();
+
         assertEquals(18, id.length());
         assertEquals("-", id.substring(4, 5));
         assertEquals(id.getClass(), String.class);
@@ -26,8 +26,8 @@ public class FlightTest {
 
     @Test
     public void testGetDate() {
-        String date = crd.getDate();
-        
+        String date = rd.getDate("2017-05-20T13:00:00.000Z");
+
         assertEquals(24, date.length());
         assertEquals("-", date.substring(4, 5));
         assertEquals("-", date.substring(7, 8));
@@ -38,40 +38,16 @@ public class FlightTest {
     }
 
     @Test
-    public void testGetOrigin() {
-        String origin = crd.getOrigin();
-
-        assertEquals(3, origin.length());
-        assertEquals(origin.getClass(), String.class);
-    }
-
-    @Test
-    public void testGetDestination() {
-        String destination = crd.getDestination();
-
-        assertEquals(3, destination.length());
-        assertEquals(destination.getClass(), String.class);
-    }
-
-    @Test
     public void testGetFlightNumber() {
-        String flightNumber = crd.getFlightNumber();
+        String flightNumber = rd.getFlightNumber("SXF");
 
         assertEquals(7, flightNumber.length());
         assertEquals(flightNumber.getClass(), String.class);
     }
 
     @Test
-    public void testGetNumberOfSeats() {
-        Integer numberOfSeats = crd.getNumberOfSeats();
-
-        assertTrue(0 < numberOfSeats);
-        assertEquals(numberOfSeats.getClass(), Integer.class);
-    }
-
-    @Test
     public void testGetTraveltime() {
-        Integer traveltime = crd.getTraveltime();
+        Integer traveltime = rd.getTravelTime();
 
         assertTrue(30 < traveltime);
         assertEquals(traveltime.getClass(), Integer.class);
@@ -79,9 +55,9 @@ public class FlightTest {
 
     @Test
     public void testGetTotalPrice() {
-        Float totalPrice = crd.getTotalPrice();
+        Float totalPrice = rd.getTotalPrice(3);
 
-        assertTrue(10 < totalPrice);
+        assertTrue(50 <= totalPrice);
         assertEquals(totalPrice.getClass(), Float.class);
     }
 }
