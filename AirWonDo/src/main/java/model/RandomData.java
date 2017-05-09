@@ -7,14 +7,8 @@ import java.util.Random;
 
 public class RandomData {
 
-    private String flightID, date, origin, destination, flightNumber;
-    private int numberOfSeats, traveltime;
-    private float totalPrice;
     private Random random = new Random();
-
-    public RandomData() {
-    }
-
+    
     public Flight getFlight() {
         return new Flight(getFlightID(), getDate(), getOrigin(), getDestination(), getFlightNumber(), getNumberOfSeats(), getTraveltime(), getTotalPrice());
     }
