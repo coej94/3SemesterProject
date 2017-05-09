@@ -1,18 +1,23 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Reservation {
+public class Reservation implements Serializable{
 
     @Id
     private String FlightId;
     private String ReserveName, ReservePhone, ReserveEmail;
     @OneToMany
     private List<Passenger> passengers;
+    
+    public Reservation(){
+        
+    }
 
     public Reservation(String FlightId, String ReserveName, String ReservePhone, String ReserveEmail, List<Passenger> passengers) {
         this.FlightId = FlightId;

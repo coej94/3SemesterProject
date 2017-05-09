@@ -1,14 +1,19 @@
 package entity;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Passenger {
+public class Passenger implements Serializable {
     
     @Id
     int id;
     String firstName, lastName;
+    
+    public Passenger(){
+        
+    }
 
     public Passenger(int id, String firstName, String lastName) {
         this.id = id;
