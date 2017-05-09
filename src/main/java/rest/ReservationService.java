@@ -1,18 +1,13 @@
 package rest;
 
 import com.google.gson.Gson;
-import entity.Flight;
 import entity.FlightReservation;
-import entity.Reserv;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
-import entity.Reservation;
-import model.ReservationHandler;
 
 /**
  * REST Web Service
@@ -36,11 +31,11 @@ public class ReservationService {
     
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String getToDest(String content) {
-        System.out.println(content);
-        Reserv r = gson.fromJson(content, Reserv.class);
-        System.out.println(r);
-       return "";
+    public String lavnogetasger(String content) {
+        FlightReservation r = gson.fromJson(content, FlightReservation.class);
+        System.out.println(r.toString());
+        // Do stuff
+       return "{\"status\":\"ok\"}";
     }
 
 //    @POST

@@ -14,10 +14,10 @@ public class FlightReservation implements Serializable {
 
     @Id
     private String airline;
-   
+
     @OneToOne
     private Reservation reservation;
-    
+
     public FlightReservation() {
     }
 
@@ -46,5 +46,5 @@ public class FlightReservation implements Serializable {
     public String toString() {
         return "FlightReservation{" + "airline=" + airline + ", reservation=" + reservation + '}';
     }
-    
+
 }

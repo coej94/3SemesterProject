@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+const URL = require("../../package.json").serverURL;
+import {Link} from 'react-router-dom';
 
-import Login from '../components/Login'
-import Logout from '../components/Logout'
+
 
 class SearchModule extends Component {
     state = {
@@ -9,16 +10,15 @@ class SearchModule extends Component {
         flights: [],
         date: "",
         from: "CPH",
-        to: "CPH",
+        to: "SXF",
         seats: "1",
         airline: []
     }
 
     searchData() {
-        fetch('http://localhost:8084/seedMaven/api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
+        fetch(URL + 'api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
             .then(res => res.json())
             .then(flight => {
-
                 var flights = flight.map((airline) => {
                     return airline!=null?airline.flights:null
                 })
@@ -61,7 +61,7 @@ class SearchModule extends Component {
                             <p>NumberofSeats: {flight.numberOfSeats}</p>
                             <p>Traveltime: {flight.traveltime} minutter</p>
                             <p>TotalPrice: {flight.totalPrice} kr.</p>
-                            <input type="button" onClick={this.postData.bind(this)} value="BOOK!!!"/>
+                          <Link to={'/book/'+this.state.airline[index].airline+'/'+flight.flightID} >Go to booking</Link>
                         </div>
                     )
                 })} return null;
@@ -70,37 +70,14 @@ class SearchModule extends Component {
 
     }
 
-    postData() {
-        var res={
-            airline:"test",
-            reservation:{
-                flightID:"2334-1494446400000",
-                numberOfSeats:2,
-                reserveeName:"Asger",
-                reservePhone:"12345678",
-                reserveEmail:"regsa13@hotmail.com",
-                passengers:[
-                    {firstName:"asger",lastname:"slasker"},
-                    {firstName:"slasker",lastName:"basker"}
-                ]
-            }
-        }
 
 
-        var options = {
-            method: "POST",
-            body: JSON.stringify(res),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }
 
-        fetch("http://localhost:8084/seedMaven/api/flightreservation", options)
-    }
+
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <p>Fly from:
                     <select name="from" onChange={this.handleChange.bind(this)}>
                         {this.state.flyOptions.map((fly, index) => <option key={index} value={fly}>{fly}</option>)}
@@ -123,8 +100,6 @@ class SearchModule extends Component {
                 <p></p>
                 {this.nyRenderTable()}
 
-                <Login/>
-                <Logout/>
             </div>
         );
     }
