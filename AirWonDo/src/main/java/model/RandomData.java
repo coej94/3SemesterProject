@@ -2,7 +2,6 @@ package model;
 
 import entity.Flight;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
