@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import entity.Flight;
+import entity.FlightReservation;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -10,7 +11,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import entity.Reservation;
-import facades.FlightFacade;
+import java.util.ArrayList;
+import java.util.List;
+import model.ReservationHandler;
 
 /**
  * REST Web Service
@@ -21,7 +24,7 @@ import facades.FlightFacade;
 public class ReservationService {
 
     Gson gson = new Gson();
-
+    
     @Context
     private UriInfo context;
 
@@ -33,7 +36,7 @@ public class ReservationService {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{flightId}/") 
+    @Path("/{flightId}/")
     public String getToDest(@PathParam("flightId") String dest, String reservation) {
         try {
             Reservation r = gson.fromJson(reservation, Reservation.class);
@@ -44,13 +47,31 @@ public class ReservationService {
             for (int i = 0; i < r.getPassengers().size(); i++) {
                 s += "{\"firstName\": \"" + r.getPassengers().get(i).getFirstName() + "\",\"lastName\": \"" + r.getPassengers().get(i).getLastName() + "\"},";
             }
-            s = s.substring(0, s.length()-1);
+            s = s.substring(0, s.length() - 1);
             String result = "{\"flightNumber\" : \"" + f.getFlightNumber() + "\",\"origin\": \"" + f.getOrigin() + "\",\"destination\": \"" + f.getDestination() + "\",\"date\": \"" + f.getDate() + "\",\"flightTime\": \"" + f.getTraveltime() + "\",\"numberOfSeats\": \"" + f.getNumberOfSeats() + "\",\"reserveName\": \"" + r.getReserveName() + "\",\"passengers\": [" + s + "]}";
             System.out.println(result);
             return result;
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return "";
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("flightReservation")
+    public String getFlightReservation(String flightReservation) {
+        try {
+            //System.out.println(flightReservation);
+            FlightReservation fr = gson.fromJson(flightReservation, FlightReservation.class);
+
+            ReservationHandler rh = new ReservationHandler();
+            rh.requestReservation(fr);
+            System.out.println(fr.getReservation());
+            return "{\"Succes\":\"true\"}";
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "{\"Succes\":\"false\"}";
     }
 }
