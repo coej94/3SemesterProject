@@ -56,6 +56,7 @@ public class MomondoService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{dest}/{to}/{date}/{passengers}/")
     public String getToFromDest(@PathParam("dest") String dest, @PathParam("to") String to, @PathParam("date") String date, @PathParam("passengers") String passengers) {
+        System.out.println("??");
         return gson.toJson(new UrlGetter(dest, to, date, passengers).getData());
     }
 }

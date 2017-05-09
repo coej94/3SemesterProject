@@ -61,7 +61,7 @@ class SearchModule extends Component {
                             <p>NumberofSeats: {flight.numberOfSeats}</p>
                             <p>Traveltime: {flight.traveltime} minutter</p>
                             <p>TotalPrice: {flight.totalPrice} kr.</p>
-                            <input type="button" value="BOOK!!!"/>
+                            <input type="button" onClick={this.postData.bind(this)} value="BOOK!!!"/>
                         </div>
                     )
                 })} return null;
@@ -71,24 +71,31 @@ class SearchModule extends Component {
     }
 
     postData() {
-
-        var data={
-            flightId:"",
-            zam:""
+        var res={
+            airline:"test",
+            reservation:{
+                flightID:"2334-1494446400000",
+                numberOfSeats:2,
+                reserveeName:"Asger",
+                reservePhone:"12345678",
+                reserveEmail:"regsa13@hotmail.com",
+                passengers:[
+                    {firstName:"asger",lastname:"slasker"},
+                    {firstName:"slasker",lastName:"basker"}
+                ]
+            }
         }
 
-        fetch('http://localhost:8084/seedMaven/api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
-            .then(res => res.json())
-            .then(flight => {
 
-                var flights = flight.map((airline) => {
-                    return airline!=null?airline.flights:null
-                })
-                this.setState({
-                    flights: flights,
-                    airline: flight
-                }, () => console.log())
+        var options = {
+            method: "POST",
+            body: JSON.stringify(res),
+            headers: new Headers({
+                'Content-Type': 'application/json'
             })
+        }
+
+        fetch("http://localhost:8084/seedMaven/api/flightreservation", options)
     }
 
     render() {
@@ -111,7 +118,7 @@ class SearchModule extends Component {
                 <input type="search" placeholder="fra"/>
                 <input type="search" placeholder="til"/>
                 <br/>
-                <input type="button" value="Search" onClick={this.postData.bind(this)}/>
+                <input type="button" value="Search" onClick={this.searchData.bind(this)}/>
                 <input type="button" value="Sort by price" onClick={this.sortByPrice.bind(this)}/>
                 <p></p>
                 {this.nyRenderTable()}

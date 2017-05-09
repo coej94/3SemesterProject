@@ -10,9 +10,9 @@ import javax.persistence.OneToMany;
 public class Reservation implements Serializable{
 
     @Id
-    private String flightId;
+    private String flightID;
     private int numberOfSeats;
-    private String reserveName, reservePhone, reserveEmail;
+    private String reserveeName, reservePhone, reserveEmail;
     @OneToMany
     private List<Passenger> passengers;
     
@@ -21,20 +21,20 @@ public class Reservation implements Serializable{
     }
 
     public Reservation(String flightId, int numberOfSeats, String reserveName, String reservePhone, String reserveEmail, List<Passenger> passengers) {
-        this.flightId = flightId;
+        this.flightID = flightId;
         this.numberOfSeats = numberOfSeats;
-        this.reserveName = reserveName;
+        this.reserveeName = reserveName;
         this.reservePhone = reservePhone;
         this.reserveEmail = reserveEmail;
         this.passengers = passengers;
     }
 
     public String getFlightId() {
-        return flightId;
+        return flightID;
     }
 
     public void setFlightId(String flightId) {
-        this.flightId = flightId;
+        this.flightID = flightId;
     }
 
     public int getNumberOfSeats() {
@@ -46,11 +46,11 @@ public class Reservation implements Serializable{
     }
 
     public String getReserveName() {
-        return reserveName;
+        return reserveeName;
     }
 
     public void setReserveName(String reserveName) {
-        this.reserveName = reserveName;
+        this.reserveeName = reserveName;
     }
 
     public String getReservePhone() {
@@ -79,7 +79,7 @@ public class Reservation implements Serializable{
 
     @Override
     public String toString() {
-        return "{\"flightId\" : \""+flightId+"\", \"numberOfSeats\": \""+numberOfSeats+"\",\"reserveName\": \""+reserveName+"\",\"reservePhone\": \""+reservePhone+"\",\"reserveEmail\": \""+reserveEmail+"\",\"passengers\":" +passengers.toString() +"}";
+        return "{\"flightId\" : \""+flightID+"\", \"numberOfSeats\": \""+numberOfSeats+"\",\"reserveName\": \""+reserveeName+"\",\"reservePhone\": \""+reservePhone+"\",\"reserveEmail\": \""+reserveEmail+"\",\"passengers\":" +passengers.toString() +"}";
     }
     
 }
