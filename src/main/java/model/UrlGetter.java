@@ -20,13 +20,17 @@ public class UrlGetter {
 
     List<String> list = new ArrayList();
 
+    
+    // to and from
     public UrlGetter(String dest, String to, String date, String passengers) {
-        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/" + dest + "/" + to + "/" + date + "/" + passengers);
+//        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/" + dest + "/" + to + "/" + date + "/" + passengers);
         list.add("https://airline.skaarup.io/api/flights/" + dest + "/" + to + "/" + date + "/" + passengers); 
     }
 
+    
+    // to
     public UrlGetter(String dest, String date, String passengers) {
-        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/" + dest + "/" + date + "/" + passengers);
+//        list.add("http://airline-plaul.rhcloud.com/api/flightinfo/" + dest + "/" + date + "/" + passengers);
         list.add("https://airline.skaarup.io/api/flights/" + dest + "/" + date + "/" + passengers);
     }
 

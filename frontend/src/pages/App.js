@@ -12,7 +12,7 @@ const App = observer(class App extends Component {
     const logInStatus = auth.loggedIn ? "Logged in as: " + auth.userName : "";
     return (
       <div>
-          <SearchModule/>
+
         <nav className="navbar navbar-default" >
           <div className="container-fluid">
             <div className="navbar-header">
@@ -40,6 +40,7 @@ const App = observer(class App extends Component {
           </div>
         </nav>
         {this.props.children || <p>You are {!auth.loggedIn && 'not'} logged in.</p>}
+        <SearchModule/>
       </div>
     )
   }
