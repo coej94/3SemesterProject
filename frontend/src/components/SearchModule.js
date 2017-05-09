@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+import Login from '../components/Login'
+import Logout from '../components/Logout'
+
 class SearchModule extends Component {
     state = {
         flyOptions: ["CPH", "SXF", "BCN", "CDG", "STN"],
@@ -90,6 +93,9 @@ class SearchModule extends Component {
                 <input type="button" value="Sort by price" onClick={this.sortByPrice.bind(this)}/>
                 <p></p>
                 {this.nyRenderTable()}
+
+                <Login/>
+                <Logout/>
             </div>
         );
     }
