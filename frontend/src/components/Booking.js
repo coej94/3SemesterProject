@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+const URL = require("../../package.json").serverURL;
 
 class Booking extends Component {
     postData() {
@@ -35,8 +36,19 @@ class Booking extends Component {
         return (
             <div className="container">
                 <h1>Booking</h1>
-                <h2>Airline: {match.params.user}</h2>
+                <h2>Airline: {match.params.airline}</h2>
                 <h3>FlightID: {match.params.flightID}</h3>
+                <label >Reservee Name: </label>
+                <input type="text"/>
+                <br/>
+                <label >Reservee Phone: </label>
+                <input type="text"/>
+                <br/>
+                <label >Reservee Email: </label>
+                <input type="email"/>
+                <br/>
+                add passenger +
+                <br/>
                 <input type="button" onClick={this.postData.bind(this)} value="Book"/>
             </div>
         );
