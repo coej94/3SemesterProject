@@ -33,7 +33,7 @@ public class ReservationService {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{flightId}/")
+    @Path("/{flightId}/") 
     public String getToDest(@PathParam("flightId") String dest, String reservation) {
         try {
             Reservation r = gson.fromJson(reservation, Reservation.class);
