@@ -1,40 +1,29 @@
 package model;
 
+import entity.Flight;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-public class CreateRandomData {
+public class RandomData {
 
     private String flightID, date, origin, destination, flightNumber;
     private int numberOfSeats, traveltime;
     private float totalPrice;
     private Random random = new Random();
 
-    public static void main(String[] args) {
-        CreateRandomData crd = new CreateRandomData();
-        crd.getTotalPrice();
+    public RandomData() {
     }
 
-    public CreateRandomData() {
-    }
-
-    public CreateRandomData(String flightID, String date, String origin, String destination, String flightNumber, int numberOfSeats, int traveltime, float totalPrice) {
-        this.flightID = flightID;
-        this.date = date;
-        this.origin = origin;
-        this.destination = destination;
-        this.flightNumber = flightNumber;
-        this.numberOfSeats = numberOfSeats;
-        this.traveltime = traveltime;
-        this.totalPrice = totalPrice;
+    public Flight getFlight() {
+        return new Flight(getFlightID(), getDate(), getOrigin(), getDestination(), getFlightNumber(), getNumberOfSeats(), getTraveltime(), getTotalPrice());
     }
 
     public String getFlightID() {
-        int random1 = random.nextInt(9000) + 1000;
-        int random2 = random.nextInt(900000000) + 100000000;
-        int random3 = random.nextInt(9000) + 1000;
-        return random1 + "-" + random2 + random3;
+        int random1 = random.nextInt(900000000) + 100000000;
+        int random2 = random.nextInt(9000) + 1000;
+        return "1111-" + random1 + random2;
     }
 
     public String getDate() {

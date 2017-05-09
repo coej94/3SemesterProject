@@ -1,6 +1,6 @@
 package test;
 
-import model.CreateRandomData;
+import model.RandomData;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
@@ -8,11 +8,11 @@ import org.junit.Test;
 
 public class FlightTest {
 
-    static CreateRandomData crd;
+    static RandomData crd;
 
     @BeforeClass
     public static void initFacade() {
-        crd = new CreateRandomData();
+        crd = new RandomData();
     }
 
     @Test
