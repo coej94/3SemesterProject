@@ -31,7 +31,8 @@ class Admin extends Component {
         this.setState({airline: airline});
     }
 
-    postAirline() {
+    postAirline(e) {
+        e.preventDefault()
 
         var airline = {
             airline: this.state.airline.airline,
@@ -39,7 +40,6 @@ class Admin extends Component {
         }
 
         const options = fetchHelper.makeOptions("POST",true,airline)
-console.log(options)
         fetch(URL + 'api/demoadmin/addAirline', options)
             .then(res => res.json)
             .then(airline => {
