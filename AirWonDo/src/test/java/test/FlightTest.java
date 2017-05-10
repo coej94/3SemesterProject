@@ -38,6 +38,14 @@ public class FlightTest {
     }
 
     @Test
+    public void testGetDestination() {
+        String destination = rd.getDestination();
+
+        assertEquals(3, destination.length());
+        assertEquals(destination.getClass(), String.class);
+    }
+
+    @Test
     public void testGetFlightNumber() {
         String flightNumber = rd.getFlightNumber("SXF");
 

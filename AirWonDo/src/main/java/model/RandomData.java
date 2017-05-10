@@ -1,14 +1,36 @@
 package model;
 
+import entity.Airline;
 import entity.Flight;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class RandomData {
 
     private Random random = new Random();
 
-    public Flight getFlight(String origin, String destination, String date, int numberOfSeats) {
-        return new Flight(getFlightID(), getDate(date), origin, destination, getFlightNumber(destination), numberOfSeats, getTravelTime(), getTotalPrice(numberOfSeats));
+    public Airline getAirline(String origin, String date, int numberOfSeats) {
+        Airline airWonDo = new Airline();
+        String destination = getDestination();
+        int numberOfFlights = random.nextInt(5) + 1;
+
+        for (int i = 0; i < numberOfFlights; i++) {
+            airWonDo.addFlight(new Flight(getFlightID(), getDate(date), origin, destination, getFlightNumber(destination), numberOfSeats, getTravelTime(), getTotalPrice(numberOfSeats)));
+        }
+
+        return airWonDo;
+    }
+
+    public Airline getAirline(String origin, String destination, String date, int numberOfSeats) {
+        Airline airWonDo = new Airline();
+        int numberOfFlights = random.nextInt(5) + 1;
+
+        for (int i = 0; i < numberOfFlights; i++) {
+            airWonDo.addFlight(new Flight(getFlightID(), getDate(date), origin, destination, getFlightNumber(destination), numberOfSeats, getTravelTime(), getTotalPrice(numberOfSeats)));
+        }
+
+        return airWonDo;
     }
 
     public String getFlightID() {
@@ -27,6 +49,33 @@ public class RandomData {
         }
 
         return yearMonthDay + time + ":00:00.000Z";
+    }
+
+    public String getDestination() {
+        List<String> destinations = new ArrayList();
+        destinations.add("SXF");
+        destinations.add("ATL");
+        destinations.add("PEK");
+        destinations.add("DXB");
+        destinations.add("LAX");
+        destinations.add("HND");
+        destinations.add("LHR");
+        destinations.add("ORD");
+        destinations.add("HKG");
+        destinations.add("PVG");
+        destinations.add("CPH");
+        destinations.add("CDG");
+        destinations.add("DFW");
+        destinations.add("JFK");
+        destinations.add("AMS");
+        destinations.add("FAN");
+        destinations.add("IST");
+        destinations.add("CAN");
+        destinations.add("DEL");
+        destinations.add("SYD");
+        destinations.add("KMG");
+
+        return destinations.get(random.nextInt(destinations.size()));
     }
 
     public String getFlightNumber(String destination) {

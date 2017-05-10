@@ -1,16 +1,16 @@
 package entity;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 public class Airline {
 
-    private final String name;
+    private final String airline;
     private List<Flight> flights;
 
-    public Airline(String name, List<Flight> flights) {
-        this.name = name;
-        this.flights = flights;
+    public Airline() {
+        airline = "AirWonDO";
+        flights = new ArrayList();
     }
 
     public void addFlight(Flight f) {

@@ -1,11 +1,6 @@
-/**
- * Created by Staal on 10/05/2017.
- */
-/**
- * Created by Staal on 09/05/2017.
- */
 import React, {Component} from 'react';
 const URL = require("../../package.json").serverURL;
+import fetchHelper from "./fetchHelpers";
 
 class Admin extends Component {
 
@@ -23,11 +18,6 @@ class Admin extends Component {
     }
 
 
-    // handleChange(e) {
-    //     this.setState({
-    //         [e.target.name]: e.target.value
-    //     }, () => console.log())
-    // }
 
     handleChange = (event) => {
         let id = event.target.id;
@@ -41,27 +31,15 @@ class Admin extends Component {
         this.setState({airline: airline});
     }
 
-    saveAirline = event => {
-        event.preventDefault();
-        let airline = this.state.airline;
-        this.postAirline(airline);
-    }
+    postAirline(e) {
+        e.preventDefault()
 
-    postAirline() {
         var airline = {
-            airline: "",
+            airline: this.state.airline.airline,
             flights: []
         }
 
-
-        var options = {
-            method: "POST",
-            body: JSON.stringify(airline),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }
-
+        const options = fetchHelper.makeOptions("POST",true,airline)
         fetch(URL + 'api/demoadmin/addAirline', options)
             .then(res => res.json)
             .then(airline => {
@@ -83,7 +61,7 @@ class Admin extends Component {
 
                     <input onChange={this.handleChange.bind(this)} id="airline" type="text" required/>
                     <br/>
-                    <input onClick={this.saveAirline.bind(this)} type="button" value="Add Airline"/>
+                    <input onClick={this.postAirline.bind(this)} type="button" value="Add Airline"/>
                 </form>
             </div>
         );

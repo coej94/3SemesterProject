@@ -3,6 +3,7 @@ package facades;
 import entity.Airline;
 import entity.Flight;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,11 +19,11 @@ public class FlightFacade {
 
     public static void main(String[] args) {
         new FlightFacade("pu_development").starter();
+        
     }
 
-    //String flightID, String date, String origin, String destination, String flightNumber, int numberOfSeats, int traveltime, float totalPrice
     public void starter() {
-        addFlight(new Flight("1", "date", "zam", "cph", "1", 1, 1, 1));
+       createAirline(new Airline("penisline", new ArrayList()));
     }
 
     private EntityManager getEntityManager() {
@@ -30,6 +31,7 @@ public class FlightFacade {
     }
 
     public Airline createAirline(Airline airline) {
+        System.out.println(airline);
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
