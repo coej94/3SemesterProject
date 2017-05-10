@@ -12,7 +12,7 @@ public class Reservation implements Serializable{
     @Id
     private String flightID;
     private int numberOfSeats;
-    private String reserveeName, reservePhone, reserveEmail;
+    private String reserveeName, reservePhone, reserveeEmail;
     @OneToMany
     private List<Passenger> passengers;
     
@@ -20,12 +20,12 @@ public class Reservation implements Serializable{
         
     }
 
-    public Reservation(String flightId, int numberOfSeats, String reserveName, String reservePhone, String reserveEmail, List<Passenger> passengers) {
-        this.flightID = flightId;
+    public Reservation(String flightID, int numberOfSeats, String reserveeName, String reservePhone, String reserveeEmail, List<Passenger> passengers) {
+        this.flightID = flightID;
         this.numberOfSeats = numberOfSeats;
-        this.reserveeName = reserveName;
+        this.reserveeName = reserveeName;
         this.reservePhone = reservePhone;
-        this.reserveEmail = reserveEmail;
+        this.reserveeEmail = reserveeEmail;
         this.passengers = passengers;
     }
 
@@ -33,8 +33,8 @@ public class Reservation implements Serializable{
         return flightID;
     }
 
-    public void setFlightId(String flightId) {
-        this.flightID = flightId;
+    public void setFlightId(String flightID) {
+        this.flightID = flightID;
     }
 
     public int getNumberOfSeats() {
@@ -49,8 +49,8 @@ public class Reservation implements Serializable{
         return reserveeName;
     }
 
-    public void setReserveName(String reserveName) {
-        this.reserveeName = reserveName;
+    public void setReserveName(String reserveeName) {
+        this.reserveeName = reserveeName;
     }
 
     public String getReservePhone() {
@@ -62,11 +62,11 @@ public class Reservation implements Serializable{
     }
 
     public String getReserveEmail() {
-        return reserveEmail;
+        return reserveeEmail;
     }
 
-    public void setReserveEmail(String reserveEmail) {
-        this.reserveEmail = reserveEmail;
+    public void setReserveEmail(String reserveeEmail) {
+        this.reserveeEmail = reserveeEmail;
     }
 
     public List<Passenger> getPassengers() {
@@ -79,7 +79,7 @@ public class Reservation implements Serializable{
 
     @Override
     public String toString() {
-        return "{\"flightId\" : \""+flightID+"\", \"numberOfSeats\": \""+numberOfSeats+"\",\"reserveName\": \""+reserveeName+"\",\"reservePhone\": \""+reservePhone+"\",\"reserveEmail\": \""+reserveEmail+"\",\"passengers\":" +passengers.toString() +"}";
+        return "{\"flightID\" : \""+flightID+"\", \"numberOfSeats\": \""+numberOfSeats+"\",\"reserveeName\": \""+reserveeName+"\",\"reservePhone\": \""+reservePhone+"\",\"reserveeEmail\": \""+reserveeEmail+"\",\"passengers\":" +passengers.toString() +"}";
     }
     
 }
