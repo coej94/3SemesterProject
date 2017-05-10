@@ -31,8 +31,10 @@ public class FlightService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("{}/{}/{}/{}")
     public String getRandomFlight() {
         Flight randomFlight = DATA.getFlight();
+        System.out.println(randomFlight);
         flights.add(randomFlight);
         return GSON.toJson(randomFlight);
     }
