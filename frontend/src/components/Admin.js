@@ -31,7 +31,8 @@ class Admin extends Component {
         this.setState({airline: airline});
     }
 
-    postAirline() {
+    postAirline(e) {
+        e.preventDefault()
 
         var airline = {
             airline: this.state.airline.airline,
