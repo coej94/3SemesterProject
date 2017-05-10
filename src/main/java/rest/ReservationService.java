@@ -2,12 +2,16 @@ package rest;
 
 import com.google.gson.Gson;
 import entity.FlightReservation;
+import javax.ws.rs.GET;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
+import model.ReservationHandler;
+import model.UrlGetter;
 
 /**
  * REST Web Service
@@ -26,16 +30,6 @@ public class ReservationService {
      * Creates a new instance of Reservation
      */
     public ReservationService() {
-    }
-    
-    
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public String lavnogetasger(String content) {
-        FlightReservation r = gson.fromJson(content, FlightReservation.class);
-        System.out.println(r.toString());
-        // Do stuff
-       return "{\"status\":\"ok\"}";
     }
 
 //    @POST
@@ -61,20 +55,20 @@ public class ReservationService {
 //        return "";
 //    }
 //
-//    @POST
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("flightReservation")
-//    public String getFlightReservation(String flightReservation) {
-//        try {
-//            //System.out.println(flightReservation);
-//            FlightReservation fr = gson.fromJson(flightReservation, FlightReservation.class);
-//            ReservationHandler rh = new ReservationHandler();
-//            rh.requestReservation(fr);
-//            System.out.println(fr.getReservation());
-//            return "{\"Succes\":\"true\"}";
-//        } catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//        return "{\"Succes\":\"false\"}";
-//    }
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getFlightReservation(String flightReservation) {
+        try {
+            //System.out.println(flightReservation);
+            FlightReservation fr = gson.fromJson(flightReservation, FlightReservation.class);
+            ReservationHandler rh = new ReservationHandler();
+            return rh.requestReservation(fr);
+            //System.out.println(fr.getReservation());
+            //return "{\"Succes\":\"true\"}";
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return "{\"ReservationServiceSucces\":\"false\"}";
+    }
+    
 }

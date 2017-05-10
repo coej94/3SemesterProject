@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import auth from "../components/auth";
+import Logout from './Logout';
 
 class Login extends Component {
 
@@ -37,6 +38,9 @@ class Login extends Component {
                         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                     </form>
                     {auth.loggedIn ? "Logged in: true" : "Logged in: false"}
+
+                    <Logout/>
+
                 </div>
         );
     }
