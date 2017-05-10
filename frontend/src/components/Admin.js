@@ -5,6 +5,7 @@
  * Created by Staal on 09/05/2017.
  */
 import React, {Component} from 'react';
+const URL = require("../../package.json").serverURL;
 
 class Admin extends Component {
 
@@ -29,54 +30,64 @@ class Admin extends Component {
     // }
 
     handleChange = (event) => {
-    let id = event.target.id;
-    let airline = this.state.airline;
-    if (id === "airline") {
-    airline.airline = event.target.value;
-}
-if (id === "flights") {
-    airline.flights = event.target.value;
-}
-this.setState({airline: airline});
-}
-
-saveAirline = event => {
-    event.preventDefault();
-    let airline = this.state.airline;
-    this.postAirline(airline);
-}
-
-postAirline() {
-    var airline = {
-        airline: "",
-        flights: []
+        let id = event.target.id;
+        let airline = this.state.airline;
+        if (id === "airline") {
+            airline.airline = event.target.value;
+        }
+        if (id === "flights") {
+            airline.flights = event.target.value;
+        }
+        this.setState({airline: airline});
     }
 
-    fetch('http://localhost:8084/seedMaven/api/demoadmin/addAirline')
-        .then(res => res.json)
-.then(airline => {
-        this.setState({
-        airline: airline.airline,
-        flights: airline.flights
-    }, () => console.log())
-})
+    saveAirline = event => {
+        event.preventDefault();
+        let airline = this.state.airline;
+        this.postAirline(airline);
+    }
 
-}
+    postAirline() {
+        var airline = {
+            airline: "",
+            flights: []
+        }
 
 
-render() {
-    return (
-        <div>
-        <form>
-        <h2>Add Airline</h2>
+        var options = {
+            method: "POST",
+            body: JSON.stringify(airline),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }
 
-    <input onChange={this.handleChange.bind(this)} id="airline" type="text" required/>
-    <br/>
-    <input onClick={this.saveAirline.bind(this)} type="button" value="Add Airline"/>
-        </form>
-        </div>
-);
-}
+        fetch(URL + 'api/demoadmin/addAirline', options)
+            .then(res => res.json)
+            .then(airline => {
+                this.setState({
+                    airline: airline.airline,
+                    flights: airline.flights
+                }, () => console.log())
+            })
+
+
+    }
+
+
+    render() {
+        return (
+            <div>
+                <form>
+                    <h2>Add Airline</h2>
+
+                    <input onChange={this.handleChange.bind(this)} id="airline" type="text" required/>
+                    <br/>
+                    <input onClick={this.saveAirline.bind(this)} type="button" value="Add Airline"/>
+                </form>
+            </div>
+        );
+    }
 
 }
 

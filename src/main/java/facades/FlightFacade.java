@@ -29,19 +29,18 @@ public class FlightFacade {
         return emf.createEntityManager();
     }
 
-    public Airline createAirline(String airlineName) {
+    public Airline createAirline(Airline airline) {
         EntityManager em = getEntityManager();
-        Airline a = new Airline(airlineName, new ArrayList());
         try {
             em.getTransaction().begin();
-            em.persist(a);
+            em.persist(airline);
             em.getTransaction().commit();
         } catch (RollbackException e) {
             e.printStackTrace();
         } finally {
             em.close();
         }
-        return a;
+        return airline;
     }
 
     public Flight addFlight(Flight f) {

@@ -32,7 +32,7 @@ public class Admin {
     @Path("addAirline")
     public String addAirline(String airline) {
         Airline a = GSON.fromJson(airline, Airline.class);
-        return GSON.toJson(FACADE.createAirline(a.getAirline()));
+        return GSON.toJson(FACADE.createAirline(a));
     }
 
 }
