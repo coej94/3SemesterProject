@@ -7,17 +7,15 @@ class Booking extends Component {
             airline:this.props.match.params.airline,
             reservation:{
                 flightID:this.props.match.params.flightID,
-                numberOfSeats:"",
-                reserveeName:"",
-                reservePhone:"",
-                reserveEmail:"",
+                numberOfSeats:"1",
+                reserveeName:"asger",
+                reservePhone:"12345678",
+                reserveeEmail:"asger@slam.dk",
                 passengers:[
-                    {firstName:"",lastname:""},
+                    {firstName:"asger",lastname:"slasker"},
                 ]
             }
         }
-
-        console.log(res)
 
         var options = {
             method: "POST",
@@ -28,11 +26,11 @@ class Booking extends Component {
         }
 
         fetch(URL + "api/flightreservation", options)
+            .then(response => response.json()).then(json=>{console.log(json)})
     }
 
     render() {
         const {match} = this.props;
-        console.log(this.props)
         return (
             <div className="container">
                 <h1>Booking</h1>

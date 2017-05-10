@@ -59,12 +59,9 @@ public class ReservationService {
     @Produces(MediaType.APPLICATION_JSON)
     public String getFlightReservation(String flightReservation) {
         try {
-            //System.out.println(flightReservation);
             FlightReservation fr = gson.fromJson(flightReservation, FlightReservation.class);
             ReservationHandler rh = new ReservationHandler();
             return rh.requestReservation(fr);
-            //System.out.println(fr.getReservation());
-            //return "{\"Succes\":\"true\"}";
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
