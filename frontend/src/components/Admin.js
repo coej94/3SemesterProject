@@ -41,18 +41,19 @@ class Admin extends Component {
         this.setState({airline: airline});
     }
 
-    saveAirline = event => {
-        event.preventDefault();
-        let airline = this.state.airline;
-        this.postAirline(airline);
-    }
+    // saveAirline = event => {
+    //     event.preventDefault();
+    //     let airline = this.state.airline;
+    //     this.postAirline(airline);
+    // }
 
     postAirline() {
+
         var airline = {
-            airline: "",
+            airline: this.state.airline.airline,
             flights: []
         }
-
+        console.log(airline)
 
         var options = {
             method: "POST",
@@ -83,7 +84,7 @@ class Admin extends Component {
 
                     <input onChange={this.handleChange.bind(this)} id="airline" type="text" required/>
                     <br/>
-                    <input onClick={this.saveAirline.bind(this)} type="button" value="Add Airline"/>
+                    <input onClick={this.postAirline.bind(this)} type="button" value="Add Airline"/>
                 </form>
             </div>
         );
