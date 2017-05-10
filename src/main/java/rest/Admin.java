@@ -14,6 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("demoadmin")
+@RolesAllowed("Admin")
 public class Admin {
 
     private static final FlightFacade FACADE = new FlightFacade("pu_development");
@@ -26,7 +27,6 @@ public class Admin {
         return "{\"message\" : \"Hello Admin from server (call accesible by only authenticated ADMINS)\",\n" + "\"serverTime\": \"" + now + "\"}";
     }
 
-@RolesAllowed("Admin")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("addAirline")

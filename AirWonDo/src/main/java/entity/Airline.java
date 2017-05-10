@@ -9,7 +9,7 @@ public class Airline {
     private List<Flight> flights;
 
     public Airline() {
-        airline = "AirWonDO";
+        airline = "AirWonDo";
         flights = new ArrayList();
     }
 
