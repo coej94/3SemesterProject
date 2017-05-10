@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entity.Airline;
 import entity.Flight;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,7 @@ public class FlightService {
 
     private static final RandomData DATA = new RandomData();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
-    private List<Flight> flights = new ArrayList();
+    private static List<Flight> flights = new ArrayList();
 
     public Flight getFlightByID(String id) {
         for (Flight flight : flights) {
@@ -30,19 +30,36 @@ public class FlightService {
     }
 
     @GET
+    @Path("{origin}/{date}/{numberOfSeats}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAirline(@PathParam("origin") String origin, @PathParam("date") String date, @PathParam("numberOfSeats") int numberOfSeats) {
+        Airline airWonDo = DATA.getAirline(origin, date, numberOfSeats);
+
+        airWonDo.getFlights().forEach((flight) -> {
+            flights.add(flight);
+        });
+
+        return GSON.toJson(airWonDo);
+    }
+
+    @GET
     @Path("{origin}/{destination}/{date}/{numberOfSeats}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getRandomFlight(@PathParam("origin") String origin, @PathParam("destination") String destination, @PathParam("date") String date, @PathParam("numberOfSeats") int numberOfSeats) {
-        Flight randomFlight = DATA.getFlight(origin, destination, date, numberOfSeats);
-        flights.add(randomFlight);
-        return GSON.toJson(randomFlight);
+    public String getAirline(@PathParam("origin") String origin, @PathParam("destination") String destination, @PathParam("date") String date, @PathParam("numberOfSeats") int numberOfSeats) {
+        Airline airWonDo = DATA.getAirline(origin, destination, date, numberOfSeats);
+
+        airWonDo.getFlights().forEach((flight) -> {
+            flights.add(flight);
+        });
+
+        return GSON.toJson(airWonDo);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{flightID}")
     public String getFlightByFlightID(@PathParam("flightID") String flightID) {
-        return GSON.toJson(getFlightByFlightID(flightID));
+        return GSON.toJson(getFlightByID(flightID));
     }
 
 }
