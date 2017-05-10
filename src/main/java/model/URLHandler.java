@@ -13,17 +13,17 @@ public class URLHandler implements Callable<String> {
     private final String URL;
     private HttpURLConnection CONNECTION;
     private final String REQUESTMETHOD;
-    private String urlParameter;
+    private String urlBody;
 
     public URLHandler(String url, String requestMethod) {
         this.URL = url;
         this.REQUESTMETHOD = requestMethod;
     }
 
-    public URLHandler(String URL, String REQUESTMETHOD, String urlParameter) {
+    public URLHandler(String URL, String REQUESTMETHOD, String urlBody) {
         this.URL = URL;
         this.REQUESTMETHOD = REQUESTMETHOD;
-        this.urlParameter = urlParameter;
+        this.urlBody = urlBody;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class URLHandler implements Callable<String> {
                 CONNECTION.setUseCaches(false);
                 CONNECTION.setDoInput(true);
                 CONNECTION.setDoOutput(true);
-                DataOutputStream wr = new DataOutputStream(
-                        CONNECTION.getOutputStream());
-                wr.writeBytes(urlParameter);
-                wr.flush();
-                wr.close();
+                try (DataOutputStream wr = new DataOutputStream(
+                        CONNECTION.getOutputStream())) {
+                    wr.writeBytes(urlBody);
+                    wr.flush();
+                }
             }
             if (CONNECTION.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : " + CONNECTION.getResponseCode());
