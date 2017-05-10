@@ -13,6 +13,9 @@ public class ReservationHandler {
             case "JENS air":
                 url = "https://airline.skaarup.io/api/flightreservation/";
                 break;
+            case "AirWonDo":
+                url = "https://vetterlain.dk/AirWonDo/api/flightreservation/";
+                break;
         }
 
         try {
