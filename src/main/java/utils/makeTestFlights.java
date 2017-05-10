@@ -1,8 +1,10 @@
 package utils;
 
+import entity.Airline;
 import entity.Flight;
 import entity.PU;
 import facades.FlightFacade;
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
@@ -17,7 +19,7 @@ public class makeTestFlights {
         FlightFacade flightFacade = new FlightFacade(PU.getPersistenceUnitName());
 
         Flight flight = new Flight("2222-534231221325", "2017-09-23", "CPH", "ISB", "DK323", 2, 230, (float) 230.4);
-        flightFacade.createAirline("AirWonDo");
+        flightFacade.createAirline(new Airline("AirWonDo", new ArrayList()));
         flightFacade.addFlight(flight);
     }
 }
