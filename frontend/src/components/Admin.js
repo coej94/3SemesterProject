@@ -39,7 +39,7 @@ class Admin extends Component {
         }
 
         const options = fetchHelper.makeOptions("POST",true,airline)
-
+console.log(options)
         fetch(URL + 'api/demoadmin/addAirline', options)
             .then(res => res.json)
             .then(airline => {
