@@ -30,18 +30,17 @@ public class FlightService {
     }
 
     @GET
+    @Path("{origin}/{destination}/{date}/{numberOfSeats}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{}/{}/{}/{}")
-    public String getRandomFlight() {
-        Flight randomFlight = DATA.getFlight();
-        System.out.println(randomFlight);
+    public String getRandomFlight(@PathParam("origin") String origin, @PathParam("destination") String destination, @PathParam("date") String date, @PathParam("numberOfSeats") int numberOfSeats) {
+        Flight randomFlight = DATA.getFlight(origin, destination, date, numberOfSeats);
         flights.add(randomFlight);
         return GSON.toJson(randomFlight);
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{flightID}")
+    @Path("{flightID}")
     public String getFlightByFlightID(@PathParam("flightID") String flightID) {
         return GSON.toJson(getFlightByFlightID(flightID));
     }

@@ -9,6 +9,9 @@
     <class>entity.Flight</class>
     <class>entity.Role</class>
     <class>entity.User</class>
+    <class>entity.FlightReservation</class>
+    <class>entity.Passenger</class>
+    <class>entity.Reservation</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://2.108.207.104:3306/test?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="polygon"/>

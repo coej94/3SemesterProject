@@ -87,8 +87,9 @@ class AuthenticationHandler {
             }
             res.json().then(data => {
                 this.setToken(data.token);
-                if (cb)
+                if (cb) {
                     cb(true)
+                }
             });
         }).catch(err => {
             console.log(err.message);

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+const URL = require("../../package.json").serverURL;
+import {Link} from 'react-router-dom';
 
-import Login from '../components/Login'
-import Logout from '../components/Logout'
+
 
 class SearchModule extends Component {
     state = {
@@ -9,16 +10,15 @@ class SearchModule extends Component {
         flights: [],
         date: "",
         from: "CPH",
-        to: "CPH",
+        to: "SXF",
         seats: "1",
         airline: []
     }
 
     searchData() {
-        fetch('http://localhost:8084/seedMaven/api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
+        fetch(URL + 'api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
             .then(res => res.json())
             .then(flight => {
-
                 var flights = flight.map((airline) => {
                     return airline!=null?airline.flights:null
                 })
@@ -61,7 +61,7 @@ class SearchModule extends Component {
                             <p>NumberofSeats: {flight.numberOfSeats}</p>
                             <p>Traveltime: {flight.traveltime} minutter</p>
                             <p>TotalPrice: {flight.totalPrice} kr.</p>
-                            <input type="button" value="BOOK!!!"/>
+                          <Link to={'/book/'+this.state.airline[index].airline+'/'+flight.flightID} >Go to booking</Link>
                         </div>
                     )
                 })} return null;
@@ -70,30 +70,14 @@ class SearchModule extends Component {
 
     }
 
-    postData() {
 
-        var data={
-            flightId:"",
-            zam:""
-        }
 
-        fetch('http://localhost:8084/seedMaven/api/flights/' + this.state.from + '/' + this.state.to + '/' + this.state.date + 'T00:00:00.000Z/' + this.state.seats)
-            .then(res => res.json())
-            .then(flight => {
 
-                var flights = flight.map((airline) => {
-                    return airline!=null?airline.flights:null
-                })
-                this.setState({
-                    flights: flights,
-                    airline: flight
-                }, () => console.log())
-            })
-    }
+
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <p>Fly from:
                     <select name="from" onChange={this.handleChange.bind(this)}>
                         {this.state.flyOptions.map((fly, index) => <option key={index} value={fly}>{fly}</option>)}
@@ -111,13 +95,11 @@ class SearchModule extends Component {
                 <input type="search" placeholder="fra"/>
                 <input type="search" placeholder="til"/>
                 <br/>
-                <input type="button" value="Search" onClick={this.postData.bind(this)}/>
+                <input type="button" value="Search" onClick={this.searchData.bind(this)}/>
                 <input type="button" value="Sort by price" onClick={this.sortByPrice.bind(this)}/>
                 <p></p>
                 {this.nyRenderTable()}
 
-                <Login/>
-                <Logout/>
             </div>
         );
     }

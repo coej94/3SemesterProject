@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import SearchModule from './components/SearchModule'
+import Booking from './components/Booking'
+import Admin from './components/Admin'
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from "./components/Navbar";
@@ -17,7 +19,9 @@ class App extends Component {
                     <div >
                         <Navbar/>
                         <Route exact path="/" render={props => <SearchModule/>}/>
+                        <Route path="/book/:airline/:flightID" component={Booking}/>
                         <Route path="/test/" component={test}/>
+                        <Route path="/Admin" component={Admin}/>
                     </div>
                 </Router>
 

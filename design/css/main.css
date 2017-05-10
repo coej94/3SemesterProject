@@ -1,0 +1,58 @@
+
+
+/*THIS IS THE OLD CSS.. DO NOT USE IT!*/
+
+
+.head{
+    color: #830396;
+    background-image: url("../img/slider-image.jpg");
+    background-repeat: no-repeat;
+    height: 550px;
+    font-family: Titillium;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    width: 100%;
+}
+
+.logo{
+    height: 60px;
+}
+
+.mid-head{
+    text-align: center;
+}
+
+.logonav ul{
+
+}
+.search-part{
+    background-attachment: fixed;
+    background-image: url("../img/back-image-2.jpg");
+    background-repeat: no-repeat;
+    height: 700px;
+}
+.filter{
+    background-color: rgba(83,03,96,0.5);
+    height: 300px;
+    margin-top: 50px;
+}
+#sub-motto{
+    text-align: center;
+    color: aliceblue;
+}
+
+.search-background{
+    margin-top: 0px;
+    padding-top: 0px;
+    background-image: url("../img/back-image-2.jpg");
+    height: 740px;
+    width: 100%;
+}
+
+.search-layer{
+    background-color: #830396;
+    height: 100px;
+    width: 60%;
+    text-align: center;
+    opacity: 0.5;
+}

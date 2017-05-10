@@ -1,6 +1,7 @@
 package model;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -12,11 +13,17 @@ public class URLHandler implements Callable<String> {
     private final String URL;
     private HttpURLConnection CONNECTION;
     private final String REQUESTMETHOD;
-    private String output;
+    private String urlParameter;
 
     public URLHandler(String url, String requestMethod) {
         this.URL = url;
         this.REQUESTMETHOD = requestMethod;
+    }
+
+    public URLHandler(String URL, String REQUESTMETHOD, String urlParameter) {
+        this.URL = URL;
+        this.REQUESTMETHOD = REQUESTMETHOD;
+        this.urlParameter = urlParameter;
     }
 
     @Override
@@ -29,9 +36,20 @@ public class URLHandler implements Callable<String> {
             CONNECTION = (HttpURLConnection) new URL(URL).openConnection();
             CONNECTION.setRequestMethod(REQUESTMETHOD);
             CONNECTION.setRequestProperty("Accept", "application/json");
+            if (REQUESTMETHOD == "POST") {
+                CONNECTION.setUseCaches(false);
+                CONNECTION.setDoInput(true);
+                CONNECTION.setDoOutput(true);
+                DataOutputStream wr = new DataOutputStream(
+                        CONNECTION.getOutputStream());
+                wr.writeBytes(urlParameter);
+                wr.flush();
+                wr.close();
+            }
             if (CONNECTION.getResponseCode() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : " + CONNECTION.getResponseCode());
             }
+
             BufferedReader br = new BufferedReader(new InputStreamReader((CONNECTION.getInputStream())));
             String output;
             String result = "";
