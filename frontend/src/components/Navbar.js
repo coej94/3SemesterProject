@@ -14,6 +14,8 @@ class Navbar extends Component {
                         <ul className="nav navbar-nav">
                             <li><NavLink exact activeClassName="isActive" to="/">Forside?</NavLink></li>
                             <li><NavLink activeClassName="active" to="/test/">Opret bruger?</NavLink></li>
+                            <li><NavLink to="/Admin">Admin Page</NavLink></li>
+                            <li><NavLink to="/Login">Login</NavLink></li>
                         </ul>
                     </div>
                 </div>
