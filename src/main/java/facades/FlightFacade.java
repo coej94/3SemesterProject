@@ -18,8 +18,7 @@ public class FlightFacade {
     }
 
     public static void main(String[] args) {
-        new FlightFacade("pu_development").starter();
-        
+        new FlightFacade("pu_development").starter();   
     }
 
     public void starter() {

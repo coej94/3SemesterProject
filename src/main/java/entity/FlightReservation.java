@@ -14,6 +14,8 @@ public class FlightReservation implements Serializable {
 
     @Id
     private String airline;
+    
+    private String userName;
 
     @OneToOne
     private Reservation reservation;
@@ -23,6 +25,12 @@ public class FlightReservation implements Serializable {
 
     public FlightReservation(String airline, Reservation reservation) {
         this.airline = airline;
+        this.reservation = reservation;
+    }
+
+    public FlightReservation(String airline, String userName, Reservation reservation) {
+        this.airline = airline;
+        this.userName = userName;
         this.reservation = reservation;
     }
 
@@ -42,9 +50,18 @@ public class FlightReservation implements Serializable {
         this.reservation = reservation;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     @Override
     public String toString() {
-        return "FlightReservation{" + "airline=" + airline + ", reservation=" + reservation + '}';
+        return "FlightReservation{" + "airline=" + airline + ", userName=" + userName + ", reservation=" + reservation + '}';
     }
+
 
 }
