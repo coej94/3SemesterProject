@@ -26,7 +26,7 @@ public class User implements IUser, Serializable {
     List<Role> roles;
 
     @OneToMany
-    List<FlightReservation> FlightReservations;
+    List<FlightReservation> FlightReservations = new ArrayList();
 
     public User() {
     }
@@ -38,6 +38,11 @@ public class User implements IUser, Serializable {
 
     public User(String passwordHash, String userName, List<FlightReservation> FlightReservations) {
         this.passwordHash = passwordHash;
+        this.userName = userName;
+        this.FlightReservations = FlightReservations;
+    }
+
+    public User(String userName, List<FlightReservation> FlightReservations) {
         this.userName = userName;
         this.FlightReservations = FlightReservations;
     }

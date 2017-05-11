@@ -71,6 +71,7 @@ public class UserFacade implements IUserFacade {
         }
     }
 
+<<<<<<< HEAD
     public User addReservation(FlightReservation reservation) {
         
         EntityManager em = getEntityManager();
@@ -79,9 +80,24 @@ public class UserFacade implements IUserFacade {
             User u = em.find(User.class, reservation.getUserName());
             System.out.println(u);
             u.addReservations(reservation);
+=======
+    //VIRKER IKKE
+    public User addReservation(User user) {
+        System.out.println("hej med dig 141");
+        EntityManager em = getEntityManager();
+        try {
+            System.out.println(user);
+            User u = em.find(User.class, user.getUserName());
+            System.out.println(u.toString());
+            
+            System.out.println("HER ER JEG 111");
+            //u.addReservations(reservation);
+            System.out.println("HER ER JEG 222");
+            System.out.println(u.toString());
+>>>>>>> 2a1804b2dd6b2031b012778f71dba3fcd4eb7424
             
             em.getTransaction().begin();
-            em.merge(u);
+            em.merge(user);
             em.getTransaction().commit();
             return u;
         } catch (RollbackException e) {
