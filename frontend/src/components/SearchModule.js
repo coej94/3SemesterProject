@@ -61,12 +61,22 @@ class SearchModule extends Component {
         let sortedflights = []
         allFlights.forEach((flight) => {
             if (flight != null) {
-                flight.forEach((flightitem) => {
-                    flight.push(flightitem);
+                flight.forEach((flights) => {
+                    sortedflights.push(flights);
                 })
             }
         })
+            console.log(sortedflights);
     }
+    //     allFlights.forEach((flight) => {
+    //         if (flight != null) {
+    //             flight.forEach((flightitem) => {
+    //                 flightitem.push(sortedflights);
+    //             })
+    //         }
+    //     })
+    //     console.log(sortedflights);
+    // }
 
     nyRenderTable() {
 
