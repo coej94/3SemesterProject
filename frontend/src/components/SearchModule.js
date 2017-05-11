@@ -37,6 +37,7 @@ class SearchModule extends Component {
     }
 
     sortByLowestPrice() {
+
         let newFlight = this.state.flights.map((flight) => {
             if (flight != null) {
                 return flight.sort((a, b) => {
@@ -49,27 +50,6 @@ class SearchModule extends Component {
 
     }
 
-
-    // getAllFlights() {
-    //     let allFlights = this.state.flights.map((flights) => {
-    //         if (flights != null) {
-    //             return flights;
-    //         }
-    //         return null;
-    //     })
-    //
-    //
-    //     let flight = []
-    //     allFlights.forEach((flight) => {
-    //         if (flight != null) {
-    //             flight.forEach((flightitem) => {
-    //                 flight.push(flightitem);
-    //             })
-    //         }
-    //     })
-    //     console.log(flight);
-    //
-    // }
     getAllFlights() {
         let allFlights = this.state.flights.map((flights) => {
             if (flights != null) {
@@ -78,62 +58,15 @@ class SearchModule extends Component {
             return null;
         })
 
-
-        let flight = []
+        let sortedflights = []
         allFlights.forEach((flight) => {
             if (flight != null) {
                 flight.forEach((flightitem) => {
-                    flight.push(flightitem);
+                    flights.push(flightitem);
                 })
             }
         })
-        console.log(flight);
-
     }
-
-    //     let theFlights = allFlights.map((allflights) => {
-    //         if (allflights != null) {
-    //             return allflights;
-    //         }
-    //         return null
-    //     })
-    //     console.log(theFlights);
-    // }
-
-//         console.log(allFlights);
-//         let airlinesFlightsArray = allFlights.map((flights) => {
-//             if (typeof(flights) == "object") {
-//                 for(var i = 0; i < flights.length;i++){
-//                     console.log(flights[i]);
-//                 }
-//             }
-//         })
-//
-// airlinesFlightsArray(allFlights);
-
-    // }
-
-    // pushFlightsToArray() {
-    //  allflights = this.searchData();
-    //  for(x=0;x<allflights.length;x){
-    //      allflights.push(x)
-    //  }
-    // }
-
-//     for(x=0;x<allFlightArrays.length;x++){
-//     allFlightArrays.push(x)
-// }
-
-
-    // sortByHighestPrice(){
-    //     let newFlight = this.state.flights.map((flights) => {
-    //         if(flights!=null) {
-    //             return flights.sort((a, b) => {
-    //
-    //             })
-    //         }
-    //     })
-    // }
 
     nyRenderTable() {
 
