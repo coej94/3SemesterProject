@@ -2,32 +2,47 @@ import React, {Component} from 'react';
 const URL = require("../../package.json").serverURL;
 
 class Booking extends Component {
+
+    state={
+        numberOfSeats:"",
+        reserveeName:"",
+        reservePhone:"",
+        reserveeEmail:"",
+        passengers:[]
+    }
+
     postData() {
         var res={
             airline:this.props.match.params.airline,
             reservation:{
                 flightID:this.props.match.params.flightID,
-                numberOfSeats:"1",
-                reserveeName:"asger",
-                reservePhone:"12345678",
-                reserveeEmail:"asger@slam.dk",
-                passengers:[
-                    {firstName:"asger",lastname:"slasker"},
-                ]
+                numberOfSeats:this.state.numberOfSeats,
+                reserveeName:this.state.reserveeName,
+                reservePhone:this.state.reservePhone,
+                reserveeEmail:this.state.reserveeEmail,
+                passengers:this.state.passengers
             }
         }
-
-        var options = {
-            method: "POST",
-            body: JSON.stringify(res),
-            headers: new Headers({
-                'Content-Type': 'application/json'
-            })
-        }
-
-        fetch(URL + "api/flightreservation", options)
-            .then(response => response.json()).then(json=>{console.log(json)})
+        console.log(res)
+        // var options = {
+        //     method: "POST",
+        //     body: JSON.stringify(res),
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json'
+        //     })
+        // }
+        //
+        // fetch(URL + "api/flightreservation", options)
+        //     .then(response => response.json()).then(json=>{console.log(json)})
     }
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        }, () => console.log())
+    }
+
+
 
     render() {
         const {match} = this.props;
@@ -37,13 +52,13 @@ class Booking extends Component {
                 <h2>Airline: {match.params.airline}</h2>
                 <h3>FlightID: {match.params.flightID}</h3>
                 <label >Reservee Name: </label>
-                <input type="text"/>
+                <input type="text" name="reserveeName" onChange={this.handleChange.bind(this)}/>
                 <br/>
                 <label >Reservee Phone: </label>
-                <input type="text"/>
+                <input type="text" name="reservePhone" onChange={this.handleChange.bind(this)}/>
                 <br/>
                 <label >Reservee Email: </label>
-                <input type="email"/>
+                <input type="email" name="reserveeEmail" onChange={this.handleChange.bind(this)}/>
                 <br/>
                 add passenger +
                 <br/>
