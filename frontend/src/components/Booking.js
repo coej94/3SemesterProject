@@ -55,7 +55,7 @@ class Booking extends Component {
                 <input type="text" name="reserveeName" onChange={this.handleChange.bind(this)}/>
                 <br/>
                 <label >Reservee Phone: </label>
-                <input type="text" name="reserveePhone" onChange={this.handleChange.bind(this)}/>
+                <input type="text" name="reservePhone" onChange={this.handleChange.bind(this)}/>
                 <br/>
                 <label >Reservee Email: </label>
                 <input type="email" name="reserveeEmail" onChange={this.handleChange.bind(this)}/>
