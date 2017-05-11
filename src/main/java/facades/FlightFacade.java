@@ -3,7 +3,6 @@ package facades;
 import entity.Airline;
 import entity.Flight;
 import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -45,7 +44,6 @@ public class FlightFacade {
     }
 
     public Flight addFlight(Flight f) {
-
         EntityManager em = getEntityManager();
         Airline a = em.find(Airline.class, "AirWonDo");
         a.addFlight(f);

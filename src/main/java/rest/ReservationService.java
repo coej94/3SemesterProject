@@ -3,7 +3,6 @@ package rest;
 import com.google.gson.Gson;
 import entity.FlightReservation;
 import facades.UserFacade;
-import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -21,7 +20,7 @@ import model.ReservationHandler;
 public class ReservationService {
 
     Gson gson = new Gson();
-    UserFacade uf = new UserFacade(Persistence.createEntityManagerFactory("pu_development"));
+    UserFacade uf = new UserFacade("pu_development");
     
     @Context
     private UriInfo context;
@@ -37,9 +36,7 @@ public class ReservationService {
     public String getFlightReservation(String flightReservation) {
         try {
             FlightReservation fr = gson.fromJson(flightReservation, FlightReservation.class);
-            //entity.User u = gson.fromJson(flightReservation, entity.User.class);
             ReservationHandler rh = new ReservationHandler();
-            //System.out.println(uf.addReservation(u));
             return rh.requestReservation(fr);
         } catch(Exception e){
             System.out.println(e.getMessage());

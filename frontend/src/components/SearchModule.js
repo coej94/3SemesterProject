@@ -62,7 +62,7 @@ class SearchModule extends Component {
         allFlights.forEach((flight) => {
             if (flight != null) {
                 flight.forEach((flightitem) => {
-                    flights.push(flightitem);
+                    flight.push(flightitem);
                 })
             }
         })

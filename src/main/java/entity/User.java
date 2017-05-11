@@ -52,9 +52,6 @@ public class User implements IUser, Serializable {
     }
 
     public void addReservations(FlightReservation FlightReservation) {
-        if(FlightReservations == null) {
-            FlightReservations = new ArrayList();
-        }
         FlightReservations.add(FlightReservation);
     }
 

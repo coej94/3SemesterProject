@@ -1,25 +1,59 @@
 package facades;
 
-import entity.Airline;
 import entity.FlightReservation;
+import entity.Passenger;
+import entity.Reservation;
 import security.IUserFacade;
 import entity.User;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.RollbackException;
 import security.IUser;
 import security.PasswordStorage;
 
 public class UserFacade implements IUserFacade {
 
-    EntityManagerFactory emf;
-
-    public UserFacade(EntityManagerFactory emf) {
-        this.emf = emf;
+    private EntityManagerFactory emf;
+    
+    public UserFacade(String persistenceUnit) {
+        this.emf = Persistence.createEntityManagerFactory(persistenceUnit);
     }
+    
+    public static void main(String[] args) {
+        new UserFacade("pu_development").starter();
+    }
+    
+    public void starter(){
+        List<Passenger> l = new ArrayList();
+        l.add(new Passenger("asger","Slasker"));
+        l.add(new Passenger("basker","vasker"));
+        l.add(new Passenger("dasker","lasker"));
+        Reservation r = new Reservation("221",1,"joacim","1234","joacim@joacim.dk", l);
+        FlightReservation fr = new FlightReservation(r);
+        updateReservation(fr,"user");
+    }
+    
+     public User updateReservation(FlightReservation r, String userName) {
+        EntityManager em = getEntityManager();
+        User u = em.find(User.class, userName);
+        u.addReservations(r);
+        try {
+            em.getTransaction().begin();
+            em.merge(u);
+            em.getTransaction().commit();
+        } catch (RollbackException e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return u;
+    }
+    
 
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -71,42 +105,6 @@ public class UserFacade implements IUserFacade {
         }
     }
 
-<<<<<<< HEAD
-    public User addReservation(FlightReservation reservation) {
-        
-        EntityManager em = getEntityManager();
-        try {
-           
-            User u = em.find(User.class, reservation.getUserName());
-            System.out.println(u);
-            u.addReservations(reservation);
-=======
-    //VIRKER IKKE
-    public User addReservation(User user) {
-        System.out.println("hej med dig 141");
-        EntityManager em = getEntityManager();
-        try {
-            System.out.println(user);
-            User u = em.find(User.class, user.getUserName());
-            System.out.println(u.toString());
-            
-            System.out.println("HER ER JEG 111");
-            //u.addReservations(reservation);
-            System.out.println("HER ER JEG 222");
-            System.out.println(u.toString());
->>>>>>> 2a1804b2dd6b2031b012778f71dba3fcd4eb7424
-            
-            em.getTransaction().begin();
-            em.merge(user);
-            em.getTransaction().commit();
-            return u;
-        } catch (RollbackException e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
-        return null;
-    }
+   
 
 }
