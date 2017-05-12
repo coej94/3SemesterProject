@@ -2,30 +2,29 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-/**
- *
- * @author Asger
- */
 @Entity
 public class FlightReservation implements Serializable {
 
-    @Id
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    int id;
+    
     private String airline;
-
+    
     @OneToOne
     private Reservation reservation;
 
     public FlightReservation() {
     }
 
-    public FlightReservation(String airline, Reservation reservation) {
-        this.airline = airline;
+    public FlightReservation(Reservation reservation) {
+        this.airline = "AirWonDo";
         this.reservation = reservation;
     }
-
     public String getAirline() {
         return airline;
     }
@@ -46,5 +45,6 @@ public class FlightReservation implements Serializable {
     public String toString() {
         return "FlightReservation{" + "airline=" + airline + ", reservation=" + reservation + '}';
     }
+
 
 }

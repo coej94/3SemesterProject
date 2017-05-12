@@ -3,8 +3,9 @@ const URL = require("../../package.json").serverURL;
 import {Link} from 'react-router-dom';
 
 
-
 class SearchModule extends Component {
+
+
     state = {
         flyOptions: ["CPH", "SXF", "BCN", "CDG", "STN"],
         flights: [],
@@ -20,7 +21,7 @@ class SearchModule extends Component {
             .then(res => res.json())
             .then(flight => {
                 var flights = flight.map((airline) => {
-                    return airline!=null?airline.flights:null
+                    return airline != null ? airline.flights : null
                 })
                 this.setState({
                     flights: flights,
@@ -35,20 +36,52 @@ class SearchModule extends Component {
         }, () => console.log())
     }
 
-    sortByPrice() {
+    sortByLowestPrice() {
+
         let newFlight = this.state.flights.map((flight) => {
-            if(flight!=null) {
+            if (flight != null) {
                 return flight.sort((a, b) => {
                     return a.totalPrice - b.totalPrice
                 })
-            } return null
+            }
+            return null
         });
         this.setState({flights: newFlight}, () => console.log());
+
     }
 
+    getAllFlights() {
+        let allFlights = this.state.flights.map((flights) => {
+            if (flights != null) {
+                return flights;
+            }
+            return null;
+        })
+
+        let sortedflights = []
+        allFlights.forEach((flight) => {
+            if (flight != null) {
+                flight.forEach((flights) => {
+                    sortedflights.push(flights);
+                })
+            }
+        })
+            console.log(sortedflights);
+    }
+    //     allFlights.forEach((flight) => {
+    //         if (flight != null) {
+    //             flight.forEach((flightitem) => {
+    //                 flightitem.push(sortedflights);
+    //             })
+    //         }
+    //     })
+    //     console.log(sortedflights);
+    // }
+
     nyRenderTable() {
+
         let table = this.state.flights.map((airline, index) => {
-            if(airline!=null){
+            if (airline != null) {
                 return airline.map((flight) => {
                     return (
                         <div key={flight.flightID}>
@@ -61,14 +94,18 @@ class SearchModule extends Component {
                             <p>NumberofSeats: {flight.numberOfSeats}</p>
                             <p>Traveltime: {flight.traveltime} minutter</p>
                             <p>TotalPrice: {flight.totalPrice} kr.</p>
-                          <Link to={'/book/'+this.state.airline[index].airline+'/'+flight.flightID} >Go to booking</Link>
+                            <Link to={'/book/' + this.state.airline[index].airline + '/' + flight.flightID}>Go to
+                                booking</Link>
                         </div>
                     )
-                })} return null;
+                })
+            }
+            return null;
         })
         return table;
 
     }
+
 
     render() {
         return (
@@ -86,12 +123,23 @@ class SearchModule extends Component {
                 <p>Seats:
                     <input type="number" name="seats" onChange={this.handleChange.bind(this)}/>
                 </p>
+                <p>Sort After</p>
+                <div className="dropdown">
+                    <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort
+                        Flights By
+                        <span className="caret"></span></button>
+                    <ul className="dropdown-menu">
+                        <li><a href="#" onClick={this.sortByLowestPrice.bind(this)}>Lowest Price</a></li>
+                        <li><a href="#">Highest Price</a></li>
+                        <li><a href="#">Travel Time</a></li>
+                    </ul>
+                </div>
+                <p>{this.getAllFlights()}</p>
                 <p>pris:</p>
                 <input type="search" placeholder="fra"/>
                 <input type="search" placeholder="til"/>
                 <br/>
                 <input type="button" value="Search" onClick={this.searchData.bind(this)}/>
-                <input type="button" value="Sort by price" onClick={this.sortByPrice.bind(this)}/>
                 <p></p>
                 {this.nyRenderTable()}
 

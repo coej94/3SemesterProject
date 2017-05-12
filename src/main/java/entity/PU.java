@@ -9,7 +9,6 @@ public class PU {
     }
 
     public static String getPersistenceUnitName() {
-        //System.out.println("PU_NAME ::::::::--------> "+PU_NAME);
         return PU_NAME;
     }
 }

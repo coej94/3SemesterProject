@@ -3,7 +3,6 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import entity.Airline;
-import facades.FlightFacade;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.security.RolesAllowed;
@@ -17,7 +16,7 @@ import javax.ws.rs.core.MediaType;
 @RolesAllowed("Admin")
 public class Admin {
 
-    private static final FlightFacade FACADE = new FlightFacade("pu_development");
+//    private static final FlightFacade FACADE = new FlightFacade("pu_development");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @GET
@@ -27,13 +26,13 @@ public class Admin {
         return "{\"message\" : \"Hello Admin from server (call accesible by only authenticated ADMINS)\",\n" + "\"serverTime\": \"" + now + "\"}";
     }
 
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("addAirline")
-    public String addAirline(String airline) {
-        System.out.println(airline);
-        Airline a = GSON.fromJson(airline, Airline.class);
-        return GSON.toJson(FACADE.createAirline(a));
-    }
+//    @POST
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("addAirline")
+//    public String addAirline(String airline) {
+//        System.out.println(airline);
+//        Airline a = GSON.fromJson(airline, Airline.class);
+//        return GSON.toJson(FACADE.createAirline(a));
+//    }
 
 }

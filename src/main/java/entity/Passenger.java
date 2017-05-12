@@ -2,23 +2,20 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Passenger implements Serializable {
     
-    @Id
-    int id;
-    String firstName, lastName;
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+    
+    private String firstName;
+    private String lastName;
     
     public Passenger(){
-        
-    }
-
-    public Passenger(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
     }
 
     public Passenger(String firstName, String lastName) {
@@ -34,6 +31,8 @@ public class Passenger implements Serializable {
         this.id = id;
     }
 
+    
+    
     public String getFirstName() {
         return firstName;
     }
