@@ -1,6 +1,6 @@
 package test;
 
-import model.RandomData;
+import model.Data;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
@@ -8,16 +8,16 @@ import org.junit.Test;
 
 public class FlightTest {
 
-    static RandomData rd;
+    static Data data;
 
     @BeforeClass
     public static void initFacade() {
-        rd = new RandomData();
+        data = new Data();
     }
 
     @Test
     public void testGetFlightID() {
-        String id = rd.getFlightID();
+        String id = data.getFlightID();
 
         assertEquals(18, id.length());
         assertEquals("-", id.substring(4, 5));
@@ -26,7 +26,7 @@ public class FlightTest {
 
     @Test
     public void testGetDate() {
-        String date = rd.getDate("2017-05-20T13:00:00.000Z");
+        String date = data.getDate("2017-05-20T13:00:00.000Z");
 
         assertEquals(24, date.length());
         assertEquals("-", date.substring(4, 5));
@@ -39,7 +39,7 @@ public class FlightTest {
 
     @Test
     public void testGetDestination() {
-        String destination = rd.getDestination();
+        String destination = data.getDestination();
 
         assertEquals(3, destination.length());
         assertEquals(destination.getClass(), String.class);
@@ -47,7 +47,7 @@ public class FlightTest {
 
     @Test
     public void testGetFlightNumber() {
-        String flightNumber = rd.getFlightNumber("SXF");
+        String flightNumber = data.getFlightNumber("SXF");
 
         assertEquals(7, flightNumber.length());
         assertEquals(flightNumber.getClass(), String.class);
@@ -55,7 +55,7 @@ public class FlightTest {
 
     @Test
     public void testGetTraveltime() {
-        Integer traveltime = rd.getTravelTime();
+        Integer traveltime = data.getTravelTime();
 
         assertTrue(30 < traveltime);
         assertEquals(traveltime.getClass(), Integer.class);
@@ -63,7 +63,7 @@ public class FlightTest {
 
     @Test
     public void testGetTotalPrice() {
-        Float totalPrice = rd.getTotalPrice(3);
+        Float totalPrice = data.getTotalPrice(3);
 
         assertTrue(50 <= totalPrice);
         assertEquals(totalPrice.getClass(), Float.class);

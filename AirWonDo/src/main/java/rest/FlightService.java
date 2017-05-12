@@ -11,23 +11,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import model.RandomData;
+import model.Data;
 
 @Path("flights")
 public class FlightService {
 
-    private static final RandomData DATA = new RandomData();
+    private static final Data DATA = new Data();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private static List<Flight> flights = new ArrayList();
-
-    public Flight getFlightByID(String id) {
-        for (Flight flight : flights) {
-            if (flight.getFlightID().equals(id)) {
-                return flight;
-            }
-        }
-        return null;
-    }
+    static List<Flight> flights = new ArrayList();
 
     @GET
     @Path("{origin}/{date}/{numberOfSeats}")
@@ -54,12 +45,4 @@ public class FlightService {
 
         return GSON.toJson(airWonDo);
     }
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("{flightID}")
-    public String getFlightByFlightID(@PathParam("flightID") String flightID) {
-        return GSON.toJson(getFlightByID(flightID));
-    }
-
 }

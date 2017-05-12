@@ -2,21 +2,23 @@ package model;
 
 import entity.Airline;
 import entity.Flight;
+import entity.Reservation;
+import entity.ReservationResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomData {
+public class Data {
 
     private Random random = new Random();
 
     public Airline getAirline(String origin, String date, int numberOfSeats) {
         Airline airWonDo = new Airline();
-        String destination = getDestination();
         int numberOfFlights = random.nextInt(5) + 1;
 
         for (int i = 0; i < numberOfFlights; i++) {
-            airWonDo.addFlight(new Flight(getFlightID(), getDate(date), origin, destination, getFlightNumber(destination), numberOfSeats, getTravelTime(), getTotalPrice(numberOfSeats)));
+            String destination = getDestination();
+            airWonDo.addFlight(new Flight(getFlightID(), getFlightNumber(destination), getDate(date), numberOfSeats, getTotalPrice(numberOfSeats), getTravelTime(), origin, destination));
         }
 
         return airWonDo;
@@ -27,10 +29,14 @@ public class RandomData {
         int numberOfFlights = random.nextInt(5) + 1;
 
         for (int i = 0; i < numberOfFlights; i++) {
-            airWonDo.addFlight(new Flight(getFlightID(), getDate(date), origin, destination, getFlightNumber(destination), numberOfSeats, getTravelTime(), getTotalPrice(numberOfSeats)));
+            airWonDo.addFlight(new Flight(getFlightID(), getFlightNumber(destination), getDate(date), numberOfSeats, getTotalPrice(numberOfSeats), getTravelTime(), origin, destination));
         }
 
         return airWonDo;
+    }
+
+    public ReservationResponse getReservationResponse(Flight flight, Reservation reservation) {
+        return new ReservationResponse(flight.getFlightNumber(), flight.getOrigin(), flight.getDestination(), flight.getDate(), flight.getTraveltime(), reservation.getNumberOfSeats(), reservation.getReserveeName(), reservation.getPassengers());
     }
 
     public String getFlightID() {
@@ -74,6 +80,8 @@ public class RandomData {
         destinations.add("DEL");
         destinations.add("SYD");
         destinations.add("KMG");
+        destinations.add("BCN");
+        destinations.add("STN");
 
         return destinations.get(random.nextInt(destinations.size()));
     }

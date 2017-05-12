@@ -1,31 +1,29 @@
 package entity;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+public class Flight {
 
-@Entity
-public class Flight implements Serializable {
-
-    @Id
-    String flightID;
-    String date, origin, destination, flightNumber;
-    int numberOfSeats, traveltime;
-    float totalPrice;
+    private String flightID;
+    private String flightNumber;
+    private String date;
+    private int numberOfSeats;
+    private float totalPrice;
+    private int traveltime;
+    private String origin;
+    private String destination;
 
     public Flight() {
 
     }
 
-    public Flight(String flightID, String date, String origin, String destination, String flightNumber, int numberOfSeats, int traveltime, float totalPrice) {
+    public Flight(String flightID, String flightNumber, String date, int numberOfSeats, float totalPrice, int traveltime, String origin, String destination) {
         this.flightID = flightID;
+        this.flightNumber = flightNumber;
         this.date = date;
+        this.numberOfSeats = numberOfSeats;
+        this.totalPrice = totalPrice;
+        this.traveltime = traveltime;
         this.origin = origin;
         this.destination = destination;
-        this.flightNumber = flightNumber;
-        this.numberOfSeats = numberOfSeats;
-        this.traveltime = traveltime;
-        this.totalPrice = totalPrice;
     }
 
     public String getFlightID() {
