@@ -1,39 +1,41 @@
 import React, {Component} from 'react';
 const URL = require("../../package.json").serverURL;
+import auth from "../components/auth";
+import fetchHelper from "./fetchHelpers";
 
 class Booking extends Component {
-
-    state={
-        numberOfSeats:"",
-        reserveeName:"",
-        reservePhone:"",
-        reserveeEmail:"",
-        passengers:[]
+    state = {
+        numberOfSeats: "",
+        reserveeName: "",
+        reservePhone: "",
+        reserveeEmail: "",
+        passengers: []
     }
 
-    postData() {
-        var res={
-            airline:this.props.match.params.airline,
-            reservation:{
-                flightID:this.props.match.params.flightID,
-                numberOfSeats:this.state.numberOfSeats,
-                reserveeName:this.state.reserveeName,
-                reservePhone:this.state.reservePhone,
-                reserveeEmail:this.state.reserveeEmail,
-                passengers:this.state.passengers
-            }
+    postData(e) {
+        e.preventDefault()
+        var flightId = this.props.match.params.flightID;
+        var res = {
+            userName: auth.userName,
+            FlightReservations: [{
+                airline: this.props.match.params.airline,
+                reservation: {
+                    flightID: flightId,
+                    numberOfSeats: 1,//this.state.numberOfSeats,
+                    reserveeName: this.state.reserveeName,
+                    reservePhone: this.state.reservePhone,
+                    reserveeEmail: this.state.reserveeEmail,
+                    passengers: [{firstName:"joacim", lastName:"vetterlain"}]//this.state.passengers
+                }
+            }]
+
         }
         console.log(res)
-        // var options = {
-        //     method: "POST",
-        //     body: JSON.stringify(res),
-        //     headers: new Headers({
-        //         'Content-Type': 'application/json'
-        //     })
-        // }
-        //
-        // fetch(URL + "api/flightreservation", options)
-        //     .then(response => response.json()).then(json=>{console.log(json)})
+        const options = fetchHelper.makeOptions("PUT",true,res)
+        fetch(URL + "api/flightreservation", options)
+            // .then(response => response.json()).then(json => {
+            // console.log(json)
+        // })
     }
 
     handleChange(e) {
@@ -43,26 +45,27 @@ class Booking extends Component {
     }
 
 
-
     render() {
         const {match} = this.props;
         return (
             <div className="container">
+                <form onSubmit={this.postData.bind(this)} value="Book">
                 <h1>Booking</h1>
                 <h2>Airline: {match.params.airline}</h2>
                 <h3>FlightID: {match.params.flightID}</h3>
                 <label >Reservee Name: </label>
-                <input type="text" name="reserveeName" onChange={this.handleChange.bind(this)}/>
+                <input type="text" name="reserveeName" required onChange={this.handleChange.bind(this)}/>
                 <br/>
                 <label >Reservee Phone: </label>
-                <input type="text" name="reservePhone" onChange={this.handleChange.bind(this)}/>
+                <input type="text" name="reservePhone" required onChange={this.handleChange.bind(this)}/>
                 <br/>
                 <label >Reservee Email: </label>
-                <input type="email" name="reserveeEmail" onChange={this.handleChange.bind(this)}/>
+                <input type="email" name="reserveeEmail" required onChange={this.handleChange.bind(this)}/>
                 <br/>
                 add passenger +
                 <br/>
-                <input type="button" onClick={this.postData.bind(this)} value="Book"/>
+                 <button>Book</button>
+                </form>
             </div>
         );
     }

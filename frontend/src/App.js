@@ -13,6 +13,17 @@ const test = () =>(
 )
 
 class App extends Component {
+
+    state = {
+        username: "",
+        password: "123",
+        loggedIn: false
+    }
+
+    updateState(e){
+        console.log(e)
+    }
+
     render() {
         return (
             <div className="App">
@@ -22,7 +33,7 @@ class App extends Component {
                         <Route exact path="/" render={props => <SearchModule/>}/>
                         <Route path="/book/:airline/:flightID" component={Booking}/>
                         <Route path="/test/" component={test}/>
-                        <Route path="/login" component={Login}/>
+                        <Route path="/login" render={props => <Login/>} />
                         <Route path="/Admin" component={Admin}/>
                     </div>
                 </Router>

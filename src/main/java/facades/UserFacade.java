@@ -35,13 +35,22 @@ public class UserFacade implements IUserFacade {
         l.add(new Passenger("dasker","lasker"));
         Reservation r = new Reservation("221",1,"joacim","1234","joacim@joacim.dk", l);
         FlightReservation fr = new FlightReservation(r);
-        updateReservation(fr,"user");
+        User u = getUser("user");
+        u.addReservations(fr);
+        updateReservation(u);
+        
     }
     
-     public User updateReservation(FlightReservation r, String userName) {
+    
+    public User getUser(String username){
         EntityManager em = getEntityManager();
-        User u = em.find(User.class, userName);
-        u.addReservations(r);
+        return em.find(User.class, username);
+    }
+    
+     public User updateReservation(User user) {
+        EntityManager em = getEntityManager();
+        User u = em.find(User.class, user.getUserName());
+        u.addReservations(user.getReservations().get(0));
         try {
             em.getTransaction().begin();
             em.merge(u);
@@ -51,7 +60,7 @@ public class UserFacade implements IUserFacade {
         } finally {
             em.close();
         }
-        return u;
+        return user;
     }
     
 
