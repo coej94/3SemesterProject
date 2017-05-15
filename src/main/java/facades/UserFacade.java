@@ -24,28 +24,27 @@ public class UserFacade implements IUserFacade {
         this.emf = Persistence.createEntityManagerFactory(persistenceUnit);
     }
     
-    public static void main(String[] args) {
-        new UserFacade("pu_development").starter();
-    }
-    
-    public void starter(){
-        List<Passenger> l = new ArrayList();
-        l.add(new Passenger("asger","Slasker"));
-        l.add(new Passenger("basker","vasker"));
-        l.add(new Passenger("dasker","lasker"));
-        Reservation r = new Reservation("221",1,"joacim","1234","joacim@joacim.dk", l);
-        FlightReservation fr = new FlightReservation(r);
-        User u = getUser("user");
-        u.addReservations(fr);
-        updateReservation(u);
-        
-    }
-    
-    
-    public User getUser(String username){
-        EntityManager em = getEntityManager();
-        return em.find(User.class, username);
-    }
+//    public static void main(String[] args) {
+//        new UserFacade("pu_development").starter();
+//    }
+//    
+//    public void starter(){
+//        List<Passenger> l = new ArrayList();
+//        l.add(new Passenger("asger","Slasker"));
+//        l.add(new Passenger("basker","vasker"));
+//        l.add(new Passenger("dasker","lasker"));
+//        Reservation r = new Reservation("221",1,"joacim","1234","joacim@joacim.dk", l);
+//        FlightReservation fr = new FlightReservation(r);
+//        User u = getUser("user");
+//        u.addReservations(fr);
+//        updateReservation(u);
+//    }
+//    
+//    
+//    public User getUser(String username){
+//        EntityManager em = getEntityManager();
+//        return em.find(User.class, username);
+//    }
     
      public User updateReservation(User user) {
         EntityManager em = getEntityManager();

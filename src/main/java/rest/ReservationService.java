@@ -50,7 +50,6 @@ public class ReservationService {
     @Produces(MediaType.APPLICATION_JSON)
     public void updateUserReservation(String user) {
         User u = gson.fromJson(user, User.class);
-        System.out.println(u.getPassword());
         new UserFacade("pu_development").updateReservation(u);
     }
 
