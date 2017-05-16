@@ -83,7 +83,7 @@ class SearchModule extends Component {
             if (airline != null) {
                 return airline.map((flight) => {
                     return (
-                        <div classname="travel-form form-control" key={flight.flightID}>
+                        <div className="travel-form form-control" key={flight.flightID}>
                             <hr/>
                             <h3>{this.state.airline[index].airline}</h3>
                             <p>FlightID: {flight.flightID}</p>

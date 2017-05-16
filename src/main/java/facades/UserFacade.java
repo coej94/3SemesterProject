@@ -40,11 +40,6 @@ public class UserFacade implements IUserFacade {
 //        updateReservation(u);
 //    }
 //    
-//    
-//    public User getUser(String username){
-//        EntityManager em = getEntityManager();
-//        return em.find(User.class, username);
-//    }
     
      public User updateReservation(User user) {
         EntityManager em = getEntityManager();

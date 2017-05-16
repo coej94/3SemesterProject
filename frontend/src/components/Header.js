@@ -1,8 +1,8 @@
-/**
- * Created by christian on 16/05/2017.
- */
-import React, {component} from 'react';
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 import Logo from '../img/Wowondologosmall.png';
+
+
 const header = () => (
     <header className="header">
         <div className="header-overlay">
@@ -22,8 +22,8 @@ const header = () => (
                             <p>ANYTIME - ANYWHERE</p>
                         </div>
                         <div className="header-btns">
-                            <a className="btn btn-travel" href="#lookup">Find a Travel</a>
-                            <a className="btn btn-createusr" href="#">Create User</a>
+                            <NavLink to="/" className="btn btn-travel">Find a Travel</NavLink>
+                            <NavLink to="/login" className="btn btn-createusr" href="#">Login</NavLink>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,6 @@ public class ApplicationConfig extends Application {
         resources.add(httpErrors.NotFoundExceptionMapper.class);
         resources.add(rest.Admin.class);
         resources.add(rest.All.class);
-        resources.add(rest.FlightService.flight.class);
         resources.add(rest.MomondoService.class);
         resources.add(rest.ReservationService.class);
         resources.add(rest.User.class);

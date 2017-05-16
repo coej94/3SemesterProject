@@ -4,9 +4,8 @@ import SearchModule from './components/SearchModule';
 import Booking from './components/Booking';
 import Admin from './components/Admin';
 import Login from './components/Login';
-import Header from './components/Header';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 
 const test = () =>(
     <h1>her står der test</h1>
@@ -14,23 +13,12 @@ const test = () =>(
 
 class App extends Component {
 
-    state = {
-        username: "",
-        password: "123",
-        loggedIn: false
-    }
-
-    updateState(e){
-        console.log(e)
-    }
-
     render() {
         return (
             <div className="App">
 
                 <Router>
                     <div >
-                        <Navbar/>
                         <Header/>
                         <Route exact path="/" render={props => <SearchModule/>}/>
                         <Route path="/book/:airline/:flightID" component={Booking}/>
