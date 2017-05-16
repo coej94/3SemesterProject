@@ -65,8 +65,8 @@ class SearchModule extends Component {
                 })
             }
         })
-            console.log(sortedflights);
     }
+
     //     allFlights.forEach((flight) => {
     //         if (flight != null) {
     //             flight.forEach((flightitem) => {
@@ -78,12 +78,11 @@ class SearchModule extends Component {
     // }
 
     nyRenderTable() {
-
         let table = this.state.flights.map((airline, index) => {
             if (airline != null) {
                 return airline.map((flight) => {
                     return (
-                        <div className="travel-form form-control" key={flight.flightID}>
+                        <div key={flight.flightID}>
                             <hr/>
                             <h3>{this.state.airline[index].airline}</h3>
                             <p>FlightID: {flight.flightID}</p>
@@ -105,8 +104,8 @@ class SearchModule extends Component {
     }
 
     /*
-            DETTE ER UDKOMMENTERET INDTIL SORT DROPDOWNEN ER IMPLEMENTERET.
-    <div className="dropdown">
+     DETTE ER UDKOMMENTERET INDTIL SORT DROPDOWNEN ER IMPLEMENTERET.
+     <div className="dropdown">
      <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort
      Flights By
      <span className="caret"></span></button>
@@ -121,54 +120,49 @@ class SearchModule extends Component {
 
     render() {
         return (
-            <div className="order">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12 text-center" >
-                            <h2>Where do you want to go?</h2>
+            <div>
+                <div className="container order row col-md-12 text-center">
+                    <h2>Where do you want to go?</h2>
+                </div>
+                <div className="booking-module filter travel-form container row" id="form-thing">
+                    <form role="form">
+                        <div className="row col-md-4">
+                            <input type="date" className="form-control" name="date"
+                                   onChange={this.handleChange.bind(this)}/>
+                            <input type="number" className="form-control" name="seats"
+                                   placeholder="seats" onChange={this.handleChange.bind(this)}/>
+                            <button className=" form-control" type="button" data-toggle="dropdown">
+                                Sort Flights By<span className="caret"></span></button>
+                            <ul className="dropdown-menu">
+                                <li><a href="#" onClick={this.sortByLowestPrice.bind(this)}>Lowest
+                                    Price</a></li>
+                                <li><a href="#">Highest Price</a></li>
+                                <li><a href="#">Travel Time</a></li>
+                            </ul>
+                            <input className="form-control" type="button" value="Search"
+                                   onClick={this.searchData.bind(this)}/>
                         </div>
+                        <div className="col-md-8">
+                            <select id="origin" className="form-control" name="from"
+                                    onChange={this.handleChange.bind(this)}>
+                                {this.state.flyOptions.map((fly, index) => <option key={index}
+                                                                                   value={fly}>{fly}</option>)}
+                            </select>
+                            <select id="destination" className="form-control" name="to"
+                                    onChange={this.handleChange.bind(this)}>
+                                {this.state.flyOptions.map((fly, index) => <option key={index}
+                                                                                   value={fly}>{fly}</option>)}
+                            </select>
+                            <input type="text" className=" form-control" placeholder="Min Price"/>
+                            <input type="text" className="form-control" placeholder="Max Price"/>
+                        </div>
+                    </form>
+                    <div className="search-res">
+                        {this.nyRenderTable()}
                     </div>
                 </div>
-                <div className="booking-module">
-                    <div className="filter">
-                        <div className="travel-form">
-                            <div className="container" id="form-thing">
-                                <form role="form">
-                                    <div className="row">
-                                        <div className="row">
-                                            <div className="col-md-4">
-                                                    <input type="date" className="form-control" name="date" onChange={this.handleChange.bind(this)}/>
-                                                    <input type="number" className="form-control" name="seats" placeholder="seats" onChange={this.handleChange.bind(this)}/>
-                                                    <button className=" form-control" type="button" data-toggle="dropdown">Sort Flights By<span className="caret"></span></button>
-                                                    <ul className="dropdown-menu">
-                                                        <li><a href="#" onClick={this.sortByLowestPrice.bind(this)}>Lowest Price</a></li>
-                                                        <li><a href="#">Highest Price</a></li>
-                                                        <li><a href="#">Travel Time</a></li>
-                                                    </ul>
-                                                <input className="form-control" type="button" value="Search" onClick={this.searchData.bind(this)}/>
-                                            </div>
-                                            <div className="col-md-8">
-                                                <select id="origin" className="form-control" name="from" onChange={this.handleChange.bind(this)}>
-                                                    {this.state.flyOptions.map((fly, index) => <option key={index} value={fly}>{fly}</option>)}
-                                                </select>
-                                                <select id="destination" className="form-control" name="to" onChange={this.handleChange.bind(this)}>
-                                                    {this.state.flyOptions.map((fly, index) => <option key={index} value={fly}>{fly}</option>)}
-                                                </select>
-                                                <input type="text" className=" form-control" placeholder="Min Price"/>
-                                                <input type="text" className="form-control" placeholder="Max Price"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="search-res">
-                {this.nyRenderTable()}
-                </div>
-            </div>
-        );
+            </div>)
+
     }
 }
 
