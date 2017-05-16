@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
 import auth from "../components/auth";
-import Logout from './Logout';
 
 class Login extends Component {
 
     state = {
         username: "",
         password: "",
-        loggedIn: false
     }
 
     handleSubmit(event) {
         event.preventDefault()
         auth.login(this.state.username, this.state.password, (loggedIn) => {
-            this.setState({loggedIn:true}) // Let's rerender!!!!!!!!!!!!!
-            console.log(this.state)
+            console.log(this.content)
+            this.props.update()
         });
     }
 
@@ -37,9 +35,6 @@ class Login extends Component {
                         <br/>
                         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                     </form>
-                    {auth.loggedIn ? "Logged in: true" : "Logged in: false"}
-
-                    <Logout/>
 
                 </div>
         );

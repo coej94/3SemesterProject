@@ -1,11 +1,8 @@
 package facades;
 
 import entity.FlightReservation;
-import entity.Passenger;
-import entity.Reservation;
 import security.IUserFacade;
 import entity.User;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,29 +16,31 @@ import security.PasswordStorage;
 public class UserFacade implements IUserFacade {
 
     private EntityManagerFactory emf;
-    
+
     public UserFacade(String persistenceUnit) {
         this.emf = Persistence.createEntityManagerFactory(persistenceUnit);
     }
-    
+
 //    public static void main(String[] args) {
 //        new UserFacade("pu_development").starter();
 //    }
 //    
 //    public void starter(){
-//        List<Passenger> l = new ArrayList();
-//        l.add(new Passenger("asger","Slasker"));
-//        l.add(new Passenger("basker","vasker"));
-//        l.add(new Passenger("dasker","lasker"));
-//        Reservation r = new Reservation("221",1,"joacim","1234","joacim@joacim.dk", l);
-//        FlightReservation fr = new FlightReservation(r);
-//        User u = getUser("user");
-//        u.addReservations(fr);
-//        updateReservation(u);
+//        User u = getUser("admin");
+//        System.out.println(getFlightReservations(u));
 //    }
-//    
+    public List<FlightReservation> getFlightReservations(String user) {
+        User u = getUser(user);
+        u.getReservations().isEmpty();
+        System.out.println(u.getReservations());
+        return u.getReservations();
+    }
     
-     public User updateReservation(User user) {
+    public User getUser(String user){
+        return getEntityManager().find(User.class, user);
+    }
+
+    public User updateReservation(User user) {
         EntityManager em = getEntityManager();
         User u = em.find(User.class, user.getUserName());
         u.addReservations(user.getReservations().get(0));
@@ -56,7 +55,6 @@ public class UserFacade implements IUserFacade {
         }
         return user;
     }
-    
 
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -107,7 +105,5 @@ public class UserFacade implements IUserFacade {
             em.close();
         }
     }
-
-   
 
 }

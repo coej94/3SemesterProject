@@ -30,12 +30,12 @@ class Booking extends Component {
             }]
 
         }
-        console.log(res)
-        const options = fetchHelper.makeOptions("PUT", true, res)
+        const options = fetchHelper.makeOptions("POST", true, res)
         fetch(URL + "api/flightreservation", options)
-        // .then(response => response.json()).then(json => {
-        // console.log(json)
-        // })
+            .then(res => res.json())
+            .then(flight => {
+                console.log(flight)
+            })
     }
 
     addPassengersToState() {

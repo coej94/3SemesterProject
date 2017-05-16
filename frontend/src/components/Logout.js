@@ -5,13 +5,12 @@ class Logout extends Component {
 
     logout() {
         auth.logout();
+        this.props.update()
     }
 
     render() {
         return (
-            <div className="container">
-                <input type="button" value="logout" onClick={this.logout.bind(this)}/>
-            </div>
+            <input type="button" value="logout" className="btn btn-createusr" onClick={this.logout.bind(this)}/>
         );
     }
 }

@@ -4,12 +4,14 @@ import com.google.gson.Gson;
 import entity.FlightReservation;
 import entity.User;
 import facades.UserFacade;
+import javax.ws.rs.GET;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import model.ReservationHandler;
 
@@ -32,13 +34,24 @@ public class ReservationService {
      */
     public ReservationService() {
     }
+    
+    @GET
+    @Path("{user}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getReservations(@PathParam("user")String username){
+        System.out.println("hej " + username);
+        return gson.toJson(uf.getFlightReservations(username));
+    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public String getFlightReservation(String flightReservation) {
+    public String getFlightReservation(String user) {
         try {
-            FlightReservation fr = gson.fromJson(flightReservation, FlightReservation.class);
+            User u = gson.fromJson(user, User.class);
+            new UserFacade("pu_development").updateReservation(u);
+            FlightReservation fr = u.getReservations().get(0);
             ReservationHandler rh = new ReservationHandler();
+            System.out.println(rh.requestReservation(fr));
             return rh.requestReservation(fr);
         } catch (Exception e) {
             System.out.println(e.getMessage());
