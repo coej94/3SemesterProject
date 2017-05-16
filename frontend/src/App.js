@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
-import SearchModule from './components/SearchModule'
-import Booking from './components/Booking'
-import Admin from './components/Admin'
-import Login from './components/Login'
-
+import SearchModule from './components/SearchModule';
+import Booking from './components/Booking';
+import Admin from './components/Admin';
+import Login from './components/Login';
+import Header from './components/Header';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 
@@ -27,9 +27,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+
                 <Router>
                     <div >
                         <Navbar/>
+                        <Header/>
                         <Route exact path="/" render={props => <SearchModule/>}/>
                         <Route path="/book/:airline/:flightID" component={Booking}/>
                         <Route path="/test/" component={test}/>
@@ -37,7 +39,7 @@ class App extends Component {
                         <Route path="/Admin" component={Admin}/>
                     </div>
                 </Router>
-                
+
             </div>
         );
     }

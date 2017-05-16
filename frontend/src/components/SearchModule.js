@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 const URL = require("../../package.json").serverURL;
 import {Link} from 'react-router-dom';
 
-
 class SearchModule extends Component {
 
 
