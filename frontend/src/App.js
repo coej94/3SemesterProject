@@ -21,7 +21,7 @@ class App extends Component {
                     <div >
                         <Header/>
                         <Route exact path="/" render={props => <SearchModule/>}/>
-                        <Route path="/book/:airline/:flightID" component={Booking}/>
+                        <Route path="/book/:airline/:flightID/:seats" component={Booking}/>
                         <Route path="/test/" component={test}/>
                         <Route path="/login" render={props => <Login/>} />
                         <Route path="/Admin" component={Admin}/>

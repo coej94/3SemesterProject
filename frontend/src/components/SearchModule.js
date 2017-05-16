@@ -92,7 +92,7 @@ class SearchModule extends Component {
                             <p>NumberofSeats: {flight.numberOfSeats}</p>
                             <p>Traveltime: {flight.traveltime} minutter</p>
                             <p>TotalPrice: {flight.totalPrice} kr.</p>
-                            <Link to={'/book/' + this.state.airline[index].airline + '/' + flight.flightID}>Go to
+                            <Link to={'/book/' + this.state.airline[index].airline + '/' + flight.flightID + '/' + this.state.seats}>Go to
                                 booking</Link>
                         </div>
                     )
