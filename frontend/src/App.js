@@ -21,7 +21,6 @@ class App extends Component {
         this.setState({
             rerender: true
         })
-        history.pushState('/');
     }
 
     render() {

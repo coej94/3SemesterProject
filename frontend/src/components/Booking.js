@@ -9,7 +9,8 @@ class Booking extends Component {
         reserveeName: "",
         reservePhone: "",
         reserveeEmail: "",
-        passengers: []
+        passengers: [],
+        booking: {}
     }
 
     postData(e) {
@@ -33,8 +34,11 @@ class Booking extends Component {
         const options = fetchHelper.makeOptions("POST", true, res)
         fetch(URL + "api/flightreservation", options)
             .then(res => res.json())
-            .then(flight => {
-                console.log(flight)
+            .then(booking => {
+                console.log(booking)
+                this.setState({
+                    booking: booking
+                })
             })
     }
 
@@ -46,38 +50,40 @@ class Booking extends Component {
         firstname.forEach((firstname) => {
             fList.push(firstname.value)
         })
-        lastname.forEach((lastname)=>{
+        lastname.forEach((lastname) => {
             lList.push(lastname.value)
         })
 
         let pList = []
-        for(var i = 0;i<fList.length;i++){
-            pList.push({firstName:fList[i],lastName:lList[i]})
+        for (var i = 0; i < fList.length; i++) {
+            pList.push({firstName: fList[i], lastName: lList[i]})
         }
         return pList;
     }
 
-    handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        }, () => console.log())
-    }
 
     renderPassengerInput() {
-        var something = [];
+        var passengerList = [];
         for (var i = 0; i < this.props.match.params.seats; i++) {
-            something.push(
+            passengerList.push(
                 <div key={i}>
                     <label>Passenger: {i + 1}</label>
                     <br/>
                     <label>Firstname: </label>
                     <input type="text" name="firstname"/>
                     <label>Lastname: </label>
-                    <input type="text"name="lastname"/>
+                    <input type="text" name="lastname"/>
                 </div>
             )
         }
-        return something;
+        return passengerList;
+    }
+
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        }, () => console.log())
     }
 
 
@@ -101,6 +107,15 @@ class Booking extends Component {
                     {this.renderPassengerInput()}
                     <br/>
                     <button>Book</button>
+
+                    <h3>result</h3>
+                    <p>Date:{this.state.booking.date}</p>
+                    <p>Destination:{this.state.booking.destination}</p>
+                    <p>Flightnumber: {this.state.booking.flightNumber}</p>
+                    <p>Flighttime: {this.state.booking.flightTime}</p>
+                    <p>Origin: {this.state.booking.origin}</p>
+                    <p>reserveeName: {this.state.booking.reserveeName}</p>
+                    {this.state.booking.passengers?this.state.booking.passengers.map((passenger,index)=>{return <p key={index}>firstname: {passenger.firstName}   lastname: {passenger.lastName}</p>}):""}
                 </form>
             </div>
         );

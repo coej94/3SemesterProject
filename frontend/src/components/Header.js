@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import Logo from '../img/Wowondologosmall.png';
 import auth from "../components/auth";
-import {withRouter} from 'react-router-dom'
 
 class header extends Component {
 

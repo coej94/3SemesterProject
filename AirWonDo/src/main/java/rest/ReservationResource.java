@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import model.Data;
 
-@Path("reservation")
+@Path("flightreservation")
 public class ReservationResource {
 
     private static final Data DATA = new Data();
@@ -28,8 +28,10 @@ public class ReservationResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public String makeReservation(String content) {
+        System.out.println(content);
         Reservation reservation = GSON.fromJson(content, Reservation.class);
         Flight flight = getFlightByID(reservation.getFlightID());
+        System.out.println(flight);
         return GSON.toJson(DATA.getReservationResponse(flight, reservation));
     }
 }
