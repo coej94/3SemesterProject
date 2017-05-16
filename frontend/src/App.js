@@ -37,7 +37,7 @@ class App extends Component {
                         <Route path="/Admin" component={Admin}/>
                     </div>
                 </Router>
-
+                
             </div>
         );
     }

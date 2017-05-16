@@ -11,13 +11,13 @@ body {
 }
 
 p {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 
 /*============= Header ==================*/
 .header{
-    background-image: url("../img/slider-image.jpg");
+    background-image: url("img/slider-image.jpg");
     background-attachment: fixed;
     background-position: 50% 50%;
     background-repeat: no-repeat;
@@ -109,7 +109,7 @@ p {
 
 /*FORMS*/
 .order {
-    background-image: url("../img/back-image-2.jpg");
+    background-image: url("img/back-image-2.jpg");
     background-position: 50% 50%;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
