@@ -14,7 +14,7 @@ class History extends Component {
             .then(res => {
                 this.setState({
                     reservation: res
-                }, () => console.log(console.log()))
+                }, () => console.log())
             })
     }
 
@@ -46,8 +46,6 @@ class History extends Component {
             return null;
         })
         return table;
-
-
     }
 
 

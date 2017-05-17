@@ -39,7 +39,6 @@ public class ReservationService {
     @Path("{user}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getReservations(@PathParam("user")String username){
-        System.out.println("hej " + username);
         return gson.toJson(uf.getFlightReservations(username));
     }
 
